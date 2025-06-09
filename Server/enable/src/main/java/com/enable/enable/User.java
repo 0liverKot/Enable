@@ -1,7 +1,18 @@
 package com.enable.enable;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "users", schema = "public")
 public class User {
     
+    // makes these attributes columns in db
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // auto generates id values
     private Integer id;
     private String name;
 
