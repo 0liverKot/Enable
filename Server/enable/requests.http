@@ -9,4 +9,4 @@ Content-Type: application/json
 
 ###
 
-GET {{rootUrl}}/users
+GET {{rootUrl}}/users/getall

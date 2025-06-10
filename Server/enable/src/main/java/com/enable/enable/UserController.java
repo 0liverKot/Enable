@@ -2,6 +2,7 @@ package com.enable.enable;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("users")
+@CrossOrigin // enables CORS allowing to connect to frontend
 public class UserController {
     
     private UserService userService;
@@ -24,7 +26,7 @@ public class UserController {
         userService.insertUser(user);
     }
 
-    @GetMapping  
+    @GetMapping("/getall")
     public List<User> getUsers() {
         return userService.getAllUsers();
     }
