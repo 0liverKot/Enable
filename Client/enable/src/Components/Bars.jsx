@@ -1,12 +1,11 @@
 import React from 'react';
 import { Box, Toolbar } from '@mui/material';
-import { lightGreen, red } from '@mui/material/colors';
 
-const Bars = ({height, due, debt}) => {
+const Bars = ({due, debt}) => {
 
     return (
     
-    <Box sx={{height:height, display: 'flex', padding: 2, border: '2px solid black'}}>
+    <Box sx={{height: 1, display: 'flex', padding: 2, border: '2px solid black'}}>
         
             <Box
                 sx={{

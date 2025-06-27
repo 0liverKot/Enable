@@ -8,9 +8,9 @@ const TotalBars = ({totalDue, totalDebt}) => {
         <Box sx={{
             width: 0.25,
             marginTop: 1,
-            marginBottom: 1
+            marginBottom: 1,
         }}>
-            <Bars height={700} due={100} debt={50}/>
+            <Bars due={100} debt={50}/>
         </Box>
     )
 }
