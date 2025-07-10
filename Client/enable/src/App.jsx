@@ -18,9 +18,10 @@ export default () => (
             justifyContent: "center",
             alignItems: "center",
             border: "solid 2px black",
-            height: "90vh"
+            margin: 2,
+            height: "85vh"
         }}>
-            <Grid size={3}>
+            <Grid size={3} sx={{height: "100%"}}>
                 <TotalBars/>
             </Grid>
             <Grid size={6}>

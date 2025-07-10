@@ -30,7 +30,6 @@ const Navbar = () => {
                         mr: 2,
                         scale: 1.5,
                     }}
-                    
                 >
                     <AccountBoxIcon/>
                 </IconButton>

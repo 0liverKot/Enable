@@ -24,7 +24,7 @@ const AllBarsDisplay = () => {
             {barsInfo.map((bars, index) => (
                 <Grid key={index} size={{ xs: 2, sm: 4, md: 4 }}>
                     <Paper elevation={10} sx={{borderRadius: 5}}>
-                        <Bars due={bars.due / 5} debt={bars.debt}/>
+                        <Bars due={bars.due} debt={bars.debt}/>
                     </Paper>
                 </Grid>
             ))}
