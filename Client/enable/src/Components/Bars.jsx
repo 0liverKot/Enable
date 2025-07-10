@@ -1,31 +1,34 @@
 import React from 'react';
-import { Box, Toolbar } from '@mui/material';
+import { Box, Grid, Paper, Toolbar } from '@mui/material';
 
 const Bars = ({due, debt}) => {
 
     return (
-    
-    <Box sx={{height: 1, display: 'flex', padding: 2, border: '2px solid black'}}>
-        
+   <Paper> 
+    <Grid container spacing={0}
+    sx={{
+        alignItems: "flex-end",
+        bgcolor: "lightblue",
+        justifyContent: "center",
+    }}>
+        <Grid size={4}>
             <Box
                 sx={{
                     bgcolor: 'lightgreen',
-                    height: due,
-                    width: 0.5,
+                    height: due * 5,
                     border: '2px solid black',
-                    marginTop: 'auto'
                 }}/>
-            
-
+        </Grid>
+        <Grid size={4}>
             <Box
                 sx={{
                     bgcolor: 'red',
-                    height: debt,
-                    width: 0.5,
+                    height: debt * 5,
                     border: '2px solid black',
-                    marginTop: 'auto'
                 }}/>
-        </Box>
+        </Grid>
+    </Grid>    
+    </Paper>
     )
 }
 
