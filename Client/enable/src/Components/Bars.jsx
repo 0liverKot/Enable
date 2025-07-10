@@ -1,15 +1,17 @@
 import React from 'react';
-import { Box, Grid, Paper, Toolbar } from '@mui/material';
+import { Box, Grid, Toolbar } from '@mui/material';
 
 const Bars = ({due, debt}) => {
 
     return (
-   <Paper> 
+    
     <Grid container spacing={0}
     sx={{
         alignItems: "flex-end",
-        bgcolor: "lightblue",
+        bgcolor: "#edeef0",
         justifyContent: "center",
+        padding: 2,
+        borderRadius: 5
     }}>
         <Grid size={4}>
             <Box
@@ -28,7 +30,8 @@ const Bars = ({due, debt}) => {
                 }}/>
         </Grid>
     </Grid>    
-    </Paper>
+
+
     )
 }
 

@@ -18,6 +18,7 @@ export default () => (
             justifyContent: "center",
             alignItems: "center",
             border: "solid 2px black",
+            height: "90vh"
         }}>
             <Grid size={3}>
                 <TotalBars/>

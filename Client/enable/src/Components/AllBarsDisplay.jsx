@@ -1,6 +1,7 @@
 import { Grid } from "@mui/material";
 import React from "react";
 import Bars from "./Bars";
+import { Paper } from "@mui/material";
 
 const AllBarsDisplay = () => {
 
@@ -22,7 +23,9 @@ const AllBarsDisplay = () => {
         }}>
             {barsInfo.map((bars, index) => (
                 <Grid key={index} size={{ xs: 2, sm: 4, md: 4 }}>
-                    <Bars due={bars.due / 5} debt={bars.debt}/>
+                    <Paper elevation={10} sx={{borderRadius: 5}}>
+                        <Bars due={bars.due / 5} debt={bars.debt}/>
+                    </Paper>
                 </Grid>
             ))}
         </Grid>

@@ -19,7 +19,7 @@ const Navbar = () => {
             <AppBar position="sticky" color="primary">
                 <Toolbar sx={{
                     gap: 10,
-                    height: 10
+                    height: "10vh"
                 }}>
                 <IconButton
                     size="large"
