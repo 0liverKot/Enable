@@ -11,7 +11,7 @@ export default () => (
   <>
   <ThemeProvider theme={theme}>
     <Navbar/>
-    <Container maxWidth={"xl"}>
+    <Container maxWidth={"xxl"}>
         <Grid container
         spacing={8}
         sx={{
@@ -21,10 +21,14 @@ export default () => (
             margin: 2,
             height: "85vh"
         }}>
-            <Grid size={3} sx={{height: "100%"}}>
+            <Grid size={3} sx={{
+                height: "90%"}}>
                 <TotalBars/>
             </Grid>
-            <Grid size={6}>
+            <Grid size={6} sx={{
+                height: "90%",
+                justifyContent: "center",
+                alignContent: "center"}}>
                 <AllBarsDisplay/>
             </Grid>
             <Grid size={3}>

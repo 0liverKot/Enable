@@ -15,17 +15,21 @@ const AllBarsDisplay = () => {
     ]
 
     return (
-        <Grid container spacing={{ xs: 2, md: 3 }} 
+        <Grid container
+        spacing={{ xs: 2, md: 3 }} 
         columns={{ xs: 4, sm: 8, md: 12 }}
+        rowGap={"2%"}
         sx={{
             justifyContent: "center",
             alignItems: "center",
+            height: "100%",
         }}>
             {barsInfo.map((bars, index) => (
-                <Grid key={index} size={{ xs: 2, sm: 4, md: 4 }}>
-                    <Paper elevation={10} sx={{borderRadius: 5}}>
-                        <Bars due={bars.due} debt={bars.debt}/>
-                    </Paper>
+                <Grid key={index} size={{ xs: 2, sm: 4, md: 4 }}
+                sx={{
+                    height: "49%",
+                    }}>
+                    <Bars due={bars.due} debt={bars.debt}/>
                 </Grid>
             ))}
         </Grid>
