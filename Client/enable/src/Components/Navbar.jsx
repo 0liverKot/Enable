@@ -36,7 +36,6 @@ const Navbar = () => {
                 
                 {!isMobile && (
                 <>    
-                    <Button sx={dashboardButtonStyle} color="inherit" href='notes'>Notes</Button>
                     <Button sx={dashboardButtonStyle} color="inherit" href='calendar'>Calendar</Button>
                     <Button sx={dashboardButtonStyle} color="inherit" href='dashboard'>Dashboard</Button>
                     <Button sx={dashboardButtonStyle} color="inherit" href='focus'>Focus</Button>

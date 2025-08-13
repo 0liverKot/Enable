@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 
-const User = () => {
+const Data = () => {
 
     const[name, setName] = useState('');
     const[users, setUsers] = useState([])
@@ -51,5 +51,5 @@ const User = () => {
     );
 };
 
-export default User; 
+export default Data; 
 

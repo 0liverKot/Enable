@@ -26,6 +26,7 @@ const AllBarsDisplay = () => {
         }}>
             {barsInfo.map((bars, index) => (
                 <Grid key={index} size={{ xs: 2, sm: 4, md: 4 }}
+                // use of 49% is due to the 2% gap width 
                 sx={{
                     height: "49%",
                     }}>
