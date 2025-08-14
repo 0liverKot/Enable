@@ -6,6 +6,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import com.enable.enable.Task;
+
 @Entity
 @Table(name = "users", schema = "public")
 public class User {
