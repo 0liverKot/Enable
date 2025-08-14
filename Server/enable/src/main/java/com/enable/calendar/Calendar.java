@@ -1,8 +1,8 @@
-package com.enable.enable;
+package com.enable.calendar;
 
 public class Calendar {
 
     public Calendar() {
-        
+
     }
 }

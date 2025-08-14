@@ -1,4 +1,4 @@
-package com.enable.enable;
+package com.enable.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

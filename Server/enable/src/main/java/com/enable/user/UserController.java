@@ -1,4 +1,4 @@
-package com.enable.enable;
+package com.enable.user;
 
 import java.util.List;
 
