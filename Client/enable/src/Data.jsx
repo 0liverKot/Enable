@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
+import UserList from "./DataComponents/UserList";
 
 const Data = () => {
 
@@ -19,16 +20,22 @@ const Data = () => {
         
         }).then(() => {
             console.log("User: " + name + " added")
-        })
+        }).then(handleShowUsers)
     }
 
     const handleShowUsers = (event) => {
 
-        fetch("http://localhost:8080/users/getall")
+        fetch("http://localhost:8080/users/getAll")
         .then(response => response.json())
         .then((result) => {
             setUsers(result);
             console.log(users);
+        })
+    }
+    const handleDeleteAllUsers = (event) => {
+
+        fetch("http://localhost:8080/deleteAll", {
+            method: "DELETE"
         })
     }
 
@@ -40,13 +47,8 @@ const Data = () => {
     </form>   
 
     <button onClick={handleShowUsers}>show users</button>
-
-    <ol>
-        {users.map((user) => {
-            return <li key={user.id}>{user.name}</li>
-        })}
-    </ol>
-
+    <button onClick={handleDeleteAllUsers}>delete all users</button>
+    <UserList users={users}></UserList>
     </Fragment>
     );
 };

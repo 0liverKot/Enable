@@ -21,10 +21,13 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User getUserById(Integer id) {
-        
+    public User getUserById(Integer id) {        
         return userRepository.findById(id).orElseThrow(
             () -> new IllegalStateException("Id: " + id + " not found"));
+    }
+
+    public void DeleteAllUsers() {
+        userRepository.deleteAll();
     }
    
 }
