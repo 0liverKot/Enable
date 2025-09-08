@@ -6,7 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-import com.enable.task.Frequency;
+import java.time.LocalDate;
 import com.enable.task.Frequency.FrequencyOptions;
 
 @Entity
@@ -21,6 +21,7 @@ public class Task {
     private String taskDescription;
     private Float durationMinutes;
     private Frequency frequency;
+    private LocalDate dateAdded;
 
     public Task() {}
 
@@ -31,6 +32,7 @@ public class Task {
         this.taskDescription = taskDescription;
         this.durationMinutes = durationMinutes;
         this.frequency = new Frequency(frequeny, null);
+        this.dateAdded = LocalDate.now();
     }
 
     public Integer getId() {
@@ -77,8 +79,11 @@ public class Task {
         return this.frequency;
     }
 
-    public void setFrequency(FrequencyOptions frequency) {
+    public void setFrequency(Frequency frequency) {
         this.frequency = frequency;
     }
 
+    public LocalDate getDateAdded() {
+        return this.dateAdded;
+    }
 }
