@@ -15,21 +15,19 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer userId; // id of user the task belongs to
-    private String note;
+    private String taskName;
+    private String taskDescription;
     private Float durationMinutes;
-    private Days nextOccurance;
     private FrequencyOptions frequency;
-
-    public enum Days{MON, TUE, WED, THUR, FRI, SAT, SUN}
 
     public Task() {}
 
-    public Task(Integer id, Integer userId, String note, Float durationMinutes, Days nextOccurance, FrequencyOptions frequeny) {
+    public Task(Integer id, Integer userId, String taskName, String taskDescription, Float durationMinutes, FrequencyOptions frequeny) {
         this.id = id;
         this.userId = userId;
-        this.note = note;
+        this.taskName = taskName;
+        this.taskDescription = taskDescription;
         this.durationMinutes = durationMinutes;
-        this.nextOccurance = nextOccurance;
         this.frequency = frequeny;
     }
 
@@ -49,28 +47,28 @@ public class Task {
         this.userId = userId;
     }
 
-    public String getNote() {
-        return this.note;
+    public String getTaskName() {
+        return this.taskName;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public void setTaskName(String taskName) {
+        this.taskName = taskName;
     }
 
+    public String getTaskDescription() {
+        return this.taskDescription;
+    }
+
+    public void setTaskDescription(String taskDescription) {
+        this.taskDescription = taskDescription;
+    }
+    
     public Float getDurationMinutes() {
         return this.durationMinutes;
     }
 
     public void setDurationMinutes(Float durationMinutes) {
         this.durationMinutes = durationMinutes;
-    }
-
-    public Days getNextOccurance() {
-        return this.nextOccurance;
-    }
-
-    public void setNextOccurance(Days nextOccurance) {
-        this.nextOccurance = nextOccurance;
     }
 
     public FrequencyOptions getFrequency() {
