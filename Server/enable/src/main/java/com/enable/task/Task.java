@@ -19,13 +19,13 @@ public class Task {
     private Integer userId; // id of user the task belongs to
     private String taskName;
     private String taskDescription;
-    private Float durationMinutes;
+    private Integer durationMinutes;
     private Frequency frequency;
     private LocalDate dateAdded;
 
     public Task() {}
 
-    public Task(Integer id, Integer userId, String taskName, String taskDescription, Float durationMinutes, FrequencyOptions frequeny) {
+    public Task(Integer id, Integer userId, String taskName, String taskDescription, Integer durationMinutes, FrequencyOptions frequeny) {
         this.id = id;
         this.userId = userId;
         this.taskName = taskName;
@@ -67,16 +67,16 @@ public class Task {
         this.taskDescription = taskDescription;
     }
     
-    public Float getDurationMinutes() {
+    public Integer getDurationMinutes() {
         return this.durationMinutes;
     }
 
-    public void setDurationMinutes(Float durationMinutes) {
+    public void setDurationMinutes(Integer durationMinutes) {
         this.durationMinutes = durationMinutes;
     }
 
-    public Frequency getFrequency() {
-        return this.frequency;
+    public String getFrequency() {
+        return this.frequency.getFrequency();
     }
 
     public void setFrequency(Frequency frequency) {
