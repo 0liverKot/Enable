@@ -6,7 +6,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-import com.enable.task.Frequency.FrequencyOptions;;
+import com.enable.task.Frequency;
+import com.enable.task.Frequency.FrequencyOptions;
 
 @Entity
 @Table(name = "tasks", schema = "public")
@@ -19,7 +20,7 @@ public class Task {
     private String taskName;
     private String taskDescription;
     private Float durationMinutes;
-    private FrequencyOptions frequency;
+    private Frequency frequency;
 
     public Task() {}
 
@@ -29,7 +30,7 @@ public class Task {
         this.taskName = taskName;
         this.taskDescription = taskDescription;
         this.durationMinutes = durationMinutes;
-        this.frequency = frequeny;
+        this.frequency = new Frequency(frequeny, null);
     }
 
     public Integer getId() {
@@ -72,7 +73,7 @@ public class Task {
         this.durationMinutes = durationMinutes;
     }
 
-    public FrequencyOptions getFrequency() {
+    public Frequency getFrequency() {
         return this.frequency;
     }
 
