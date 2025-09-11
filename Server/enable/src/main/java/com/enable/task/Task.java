@@ -1,13 +1,16 @@
 package com.enable.task;
 
+import java.time.LocalDate;
+
+import jakarta.persistence.AttributeOverride;
+import jakarta.persistence.AttributeOverrides;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-
-import java.time.LocalDate;
-import com.enable.task.Frequency.FrequencyOptions;
 
 @Entity
 @Table(name = "tasks", schema = "public")
@@ -16,22 +19,24 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer userId; // id of user the task belongs to
+    private Integer uid; // id of user the task belongs to
     private String taskName;
     private String taskDescription;
     private Integer durationMinutes;
-    private Frequency frequency;
+    
+    @Embedded
+    private Frequency frequency = new Frequency();
     private LocalDate dateAdded;
 
     public Task() {}
 
-    public Task(Integer id, Integer userId, String taskName, String taskDescription, Integer durationMinutes, FrequencyOptions frequeny) {
+    public Task(Integer id, Integer uid, String taskName, String taskDescription, Integer durationMinutes, String[] frequenyOption) {
         this.id = id;
-        this.userId = userId;
+        this.uid = uid;
         this.taskName = taskName;
         this.taskDescription = taskDescription;
         this.durationMinutes = durationMinutes;
-        this.frequency = new Frequency(frequeny, null);
+        this.frequency = new Frequency(frequenyOption[0], frequenyOption[1]);
         this.dateAdded = LocalDate.now();
     }
 
@@ -43,12 +48,12 @@ public class Task {
         this.id = id;
     }
 
-    public Integer getUserId() {
-        return this.userId;
+    public Integer getUid() {
+        return this.uid;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUid(Integer uid) {
+        this.uid = uid;
     }
 
     public String getTaskName() {
@@ -75,8 +80,8 @@ public class Task {
         this.durationMinutes = durationMinutes;
     }
 
-    public String getFrequency() {
-        return this.frequency.getFrequency();
+    public Frequency getFrequency() {
+        return this.frequency;
     }
 
     public void setFrequency(Frequency frequency) {

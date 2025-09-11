@@ -63,7 +63,7 @@ public class TaskService {
             
             // dateCounter will be incremented according to the task's frequency to see if it will appear on specified date
             LocalDate dateCounter = task.getDateAdded();
-            String frequency = task.getFrequency();
+            String frequency = task.getFrequency().getFrequencyDays();
 
             boolean custom = false; 
             String[] customFrequency = null;
