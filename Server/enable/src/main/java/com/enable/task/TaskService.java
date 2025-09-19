@@ -20,8 +20,12 @@ public class TaskService {
 
     public void insertTask(Task task) {
 
-        // check for any empty fields 
+        // check if task is duplicate
+        if(taskRepository.getTaskByName(task.taskName).size() != 0) {
+            throw new IllegalStateException("Task with name: " + task.taskName + " already exists");
+        }
 
+        // check for any empty fields 
         Field[] fields = task.getClass().getDeclaredFields(); 
         List<String> unfilledFields = new ArrayList<>();  
         for(Field field : fields) {

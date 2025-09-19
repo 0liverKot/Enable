@@ -9,4 +9,7 @@ public interface TaskRepository extends JpaRepository<Task, Integer>{
     
     @Query("SELECT t FROM Task t WHERE t.uid = ?1")
     List<Task> getAllTasksByUser(Integer uid);
+
+    @Query("SELECT t FROM Task t WHERE t.taskName = ?1")
+    List<Task> getTaskByName(String taskName);
 }
