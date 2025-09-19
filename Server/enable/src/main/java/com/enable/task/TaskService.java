@@ -1,5 +1,6 @@
 package com.enable.task;
 
+import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,44 @@ public class TaskService {
     // Post mappings
 
     public void insertTask(Task task) {
+
+        // check for any empty fields 
+
+        Field[] fields = task.getClass().getDeclaredFields(); 
+        List<String> unfilledFields = new ArrayList<>();  
+        for(Field field : fields) {
+            try {
+                // id is always empty since it is auto generated
+                if(field.getName() == "id") {
+                    continue;
+                }
+                if(field.get(task) == null || field.get(task).toString().isEmpty()) {
+                    unfilledFields.add(field.getName());
+                }
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+            
+        }
+
+        if(!unfilledFields.isEmpty()) {
+        
+            // build string for error message 
+
+            StringBuilder builder = new StringBuilder();
+            builder.append("The following fields are empty: ");
+            builder.append(System.lineSeparator());
+
+            for(String field : unfilledFields) {
+                builder.append(field);
+                builder.append(System.lineSeparator());
+            }
+
+            throw new IllegalStateException(builder.toString());
+        }
+
         taskRepository.save(task);
     }
 
@@ -50,6 +89,10 @@ public class TaskService {
 
     // Get mappings
     
+    public List<Task> getAllTasks() {
+        return taskRepository.findAll();
+    }
+
     public List<Task> getAllTasksByUser(Integer uid) {
         return taskRepository.getAllTasksByUser(uid);
     }

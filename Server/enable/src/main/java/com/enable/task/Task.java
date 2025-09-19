@@ -1,6 +1,8 @@
 package com.enable.task;
 
+import java.lang.reflect.Array;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.AttributeOverrides;
@@ -18,25 +20,25 @@ public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private Integer uid; // id of user the task belongs to
-    private String taskName;
-    private String taskDescription;
-    private Integer durationMinutes;
+    public Integer id;
+    public Integer uid; // id of user the task belongs to
+    public String taskName;
+    public String taskDescription;
+    public Integer durationMinutes;
     
     @Embedded
-    private Frequency frequency = new Frequency();
-    private LocalDate dateAdded;
+    public Frequency frequency = new Frequency();
+    public LocalDate dateAdded;
 
     public Task() {}
 
-    public Task(Integer id, Integer uid, String taskName, String taskDescription, Integer durationMinutes, String[] frequenyOption) {
+    public Task(Integer id, Integer uid, String taskName, String taskDescription, Integer durationMinutes, String frequenyOption, String custom) {
         this.id = id;
         this.uid = uid;
         this.taskName = taskName;
         this.taskDescription = taskDescription;
         this.durationMinutes = durationMinutes;
-        this.frequency = new Frequency(frequenyOption[0], frequenyOption[1]);
+        this.frequency = new Frequency(frequenyOption, custom);
         this.dateAdded = LocalDate.now();
     }
 

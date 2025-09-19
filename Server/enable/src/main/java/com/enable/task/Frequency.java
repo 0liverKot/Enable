@@ -17,18 +17,14 @@ public class Frequency{
     public Frequency(String frequencyOption, String custom) {
     
         // check for valid frequencyOption
-        List<String> validFrequencyOptions = new ArrayList<>(Arrays.asList("DAILY", "EVERY_OTHER_DAY", "WEEKLY", "BI_WEEKLY"));
+        List<String> validFrequencyOptions = new ArrayList<>(Arrays.asList("DAILY", "EVERY_OTHER_DAY", "WEEKLY", "BI_WEEKLY", "CUSTOM"));
 
         if(!validFrequencyOptions.contains(frequencyOption)) {
             throw new IllegalStateException("Invalid Frequency Option selected");
         }
-
-        if(custom != "N/A") {
-            this.custom = custom;
-            this.frequencyOption = frequencyOption;
-        } else {
-            this.frequencyOption = frequencyOption;
-            };
+        
+        this.custom = custom;
+        this.frequencyOption = frequencyOption;
         }
         
 
