@@ -51,6 +51,11 @@ public class TaskController {
 
     // Get mappings
     
+    @GetMapping("get/{id}")
+    public Task getTaskById(@PathVariable Integer id) {
+        return taskService.getTaskById(id);
+    }
+
     @GetMapping("getAll")
     public List<Task> getAllTasks() {
         return taskService.getAllTasks();

@@ -94,6 +94,12 @@ public class TaskService {
 
     // Get mappings
     
+    public Task getTaskById(Integer id) {
+        return taskRepository.findById(id).orElseThrow(
+            () -> new IllegalStateException("Task with id: " + id + " not found")
+        );
+    }
+
     public List<Task> getAllTasks() {
         return taskRepository.findAll();
     }
