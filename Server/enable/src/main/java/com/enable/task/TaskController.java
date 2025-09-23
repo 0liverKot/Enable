@@ -29,7 +29,8 @@ public class TaskController {
     public void addNewTask(@RequestBody Task task) {
         
         task.setFrequency(task.getFrequencyOption(), task.getCustom());
-        
+        task.setDateAdded();
+
         taskService.insertTask(task);
     }
 

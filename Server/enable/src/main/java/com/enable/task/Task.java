@@ -92,6 +92,10 @@ public class Task {
         this.frequency = frequency.getFrequencyDays();
     }
 
+    public void setDateAdded() {
+        this.dateAdded = LocalDate.now();
+    }
+
     public LocalDate getDateAdded() {
         return this.dateAdded;
     }
