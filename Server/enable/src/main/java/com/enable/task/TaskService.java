@@ -3,6 +3,7 @@ package com.enable.task;
 import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -112,20 +113,23 @@ public class TaskService {
             LocalDate dateCounter = task.getDateAdded();
             String frequency = task.getFrequency();
 
-            boolean custom = false; 
-            String[] customFrequency = null;
-            List<Long> customFrequencyList = new ArrayList<>();
-
-            if (frequency.contains("/")) {
+            List<Long> customFrequencyLongArray = new ArrayList<>();
+            
+            // set custom variable 
+            boolean custom = false;
+            if(task.getFrequencyOption() == "CUSTOM") {
                 custom = true;
-                customFrequency = frequency.split("/");
+            }
 
-                for(String i : customFrequency) {
-                    customFrequencyList.add(Long.parseLong(i));
+            if (custom) {
+                
+                List<String> customFrequencyStringArray = new ArrayList<>(Arrays.asList(frequency.split("/")));
+                for(String i : customFrequencyStringArray) {
+                    customFrequencyLongArray.add(Long.parseLong(i));
                 }
             }
 
-            while(dateCounter.isBefore(date)) {
+            while(!dateCounter.isAfter(date)) {
                 if(dateCounter.equals(date)) {
                     tasks.add(task);
                     break;
@@ -135,8 +139,8 @@ public class TaskService {
                     dateCounter = dateCounter.plusDays(Long.parseLong(frequency));
                 } else {
                     // for a custom frequency, cycle through the array to get the next date occurance
-                    Long days = customFrequencyList.remove(0);
-                    customFrequencyList.add(days);
+                    Long days = customFrequencyLongArray.remove(0);
+                    customFrequencyLongArray.add(days);
 
                     dateCounter = dateCounter.plusDays(days);
                 }

@@ -3,6 +3,7 @@ package com.enable.task;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.cglib.core.Local;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -60,8 +61,11 @@ public class TaskController {
         return taskService.getAllTasksByUser(uid);
     }
 
-    @GetMapping("getAll/{uid}/{day}")
-    public List<Task> getAllTasksByDay(@PathVariable Integer uid, @PathVariable LocalDate date) {
+    @GetMapping("getAll/day/{uid}")
+    public List<Task> getAllTasksByDay(@PathVariable Integer uid, @RequestBody String dateString) {
+        
+        // parsing through json request
+        LocalDate date = LocalDate.parse(dateString.split(":")[1].replaceAll("}", "").replaceAll("\"", "").replaceAll("\r\n", "").strip());
         return taskService.getAllTasksByDay(uid, date);
     }
 
