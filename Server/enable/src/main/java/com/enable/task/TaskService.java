@@ -154,6 +154,10 @@ public class TaskService {
 
         }    
         
+        if(tasks.isEmpty()) {
+            throw new IllegalStateException("No tasks on the date: " + date);
+        }
+
         return tasks;
     }
 
