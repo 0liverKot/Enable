@@ -5,6 +5,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -68,30 +71,62 @@ public class TaskService {
     // Put mappings
 
     @Transactional
-    public void updateTask(Integer id, Integer uid, String taskName, String taskDescription, Integer duration, String frequencyOption, String custom) {
+    public void updateTask(Integer id, Integer uid, Map<String, Object> body) {
+
+        Task task = taskRepository.findById(id).orElseThrow(() 
+        -> new IllegalStateException("Task with Id: " + id + "does not exist")
+        );
         
-        // check valid name
-        for(Task task : getAllTasksByUser(uid)) {
-            if(task.getTaskName().equals(taskName)) {
-                throw new IllegalStateException(
-                    "Task with name: " + taskName + " is taken"
-                );
+        body.forEach((field, value) -> {
+            if(field.equals("frequencyOption")) {
+                String frequencyOption = (String) body.get("frequencyOption");
+                String custom = (String) body.get("custom");
+                updateField(task, frequencyOption, custom);
+            }
+            // skip over custom since frequencyOption will change the frequency
+            // custom variable is passed when updating it 
+            else if(!field.equals("custom")) {
+                updateField(task, id, uid, field, value);
             }
         }
+    );  
 
-        Task task = null; 
-        try {
-            task = taskRepository.findById(id).get();
-        } catch (Exception e) {
-            throw new IllegalStateException("Task with id: " + id + " not found");
-        }
-
-        task.setTaskName(taskName);
-        task.setTaskDescription(taskDescription);
-        task.setDurationMinutes(duration);
-        task.setFrequency(frequencyOption, custom);
     }
 
+    // used to update fields in the update task method
+    private void updateField(Task task, Integer id, Integer uid, String field, Object value) {
+        switch(field) {
+
+            case "taskName" -> {
+                List<Task> tasks = getAllTasksByUser(uid);
+                for (Task t : tasks) {
+                    if(t.getTaskName().equals(value)) {
+                        throw new IllegalStateException("Task with name: " + value + " already exists");
+                    }
+                }
+                String taskName = (String) value;
+                task.setTaskName(taskName);    
+            }
+
+            case "taskDescription" -> {
+                String taskDescription = (String) value;
+                task.setTaskDescription(taskDescription);
+            }
+
+            case "durationMinutes" -> {
+                Integer durationMinutes = (Integer) value;
+                task.setDurationMinutes(durationMinutes);
+            }
+        }
+    }
+
+    // special case for updating frequency since it requires two variables
+    private void updateField(Task task, String frequencyOption, String custom) {
+        task.setFrequencyOption(frequencyOption);
+        task.setCustom(custom);
+        task.setFrequency(task.getFrequencyOption(), task.getCustom());
+    }
+    
     // Get mappings
     
     public Task getTaskById(Integer id) {

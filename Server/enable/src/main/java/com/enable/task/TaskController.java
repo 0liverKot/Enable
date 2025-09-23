@@ -2,8 +2,8 @@ package com.enable.task;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
-import org.springframework.cglib.core.Local;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -36,17 +35,13 @@ public class TaskController {
     }
 
     // Put mappings
-    @PutMapping("update/{id}")
+    @PutMapping("update/{id}/{uid}")
     public void updateTask(
         @PathVariable Integer id,
-        @RequestParam(required = false) Integer uid,
-        @RequestParam(required = false) String taskName,
-        @RequestParam(required = false) String taskDescription,
-        @RequestParam(required = false) Integer durationMinutes,
-        @RequestParam(required = false) String frequencyOption,
-        @RequestParam(required = false) String custom
+        @PathVariable Integer uid,
+        @RequestBody(required = false) Map<String, Object> body
     ) {
-        taskService.updateTask(id, uid, taskName, taskDescription, durationMinutes, frequencyOption, custom);
+        taskService.updateTask(id, uid, body);
     }
 
     // Get mappings
@@ -67,10 +62,10 @@ public class TaskController {
     }
 
     @GetMapping("getAll/day/{uid}")
-    public List<Task> getAllTasksByDay(@PathVariable Integer uid, @RequestBody String dateString) {
+    public List<Task> getAllTasksByDay(@PathVariable Integer uid, @RequestBody Map<String, Object> body) {
         
-        // parsing through json request
-        LocalDate date = LocalDate.parse(dateString.split(":")[1].replaceAll("}", "").replaceAll("\"", "").replaceAll("\r\n", "").strip());
+        String dateString = (String) body.get("date");
+        LocalDate date = LocalDate.parse(dateString);
         return taskService.getAllTasksByDay(uid, date);
     }
 
