@@ -10,7 +10,7 @@ import { Container, Grid, Toolbar } from "@mui/material";
 export default () => (
   <>
   <ThemeProvider theme={theme}>
-    <Navbar/>
+    <Navbar currentPage={"dashboard"}/>
     <Container maxWidth={"xxl"}>
         <Grid container
         spacing={8}

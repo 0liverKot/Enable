@@ -3,7 +3,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import { AppBar, Box, Toolbar, Button, IconButton, useMediaQuery, useTheme, Container } from '@mui/material'
 
-const Navbar = () => {
+const Navbar = ({currentPage}) => {
 
     const theme = useTheme()
 
@@ -36,9 +36,27 @@ const Navbar = () => {
                 
                 {!isMobile && (
                 <>    
-                    <Button sx={dashboardButtonStyle} color="inherit" href='calendar'>Calendar</Button>
-                    <Button sx={dashboardButtonStyle} color="inherit" href='dashboard'>Dashboard</Button>
-                    <Button sx={dashboardButtonStyle} color="inherit" href='focus'>Focus</Button>
+                    {currentPage == "dashboard" && (
+                    <>
+                        <Button sx={dashboardButtonStyle} color="inherit" href='calendar'>Calendar</Button>
+                        <Button sx={dashboardButtonStyle} color="inherit" href='dashboard'>Dashboard</Button>
+                        <Button sx={dashboardButtonStyle} color="inherit" href='focus'>Focus</Button>
+                    </>
+                    )}
+                    {currentPage == "calendar" && (
+                    <>
+                        <Button sx={dashboardButtonStyle} color="inherit" href='focus'>Focus</Button>
+                        <Button sx={dashboardButtonStyle} color="inherit" href='calendar'>Calendar</Button>
+                        <Button sx={dashboardButtonStyle} color="inherit" href='dashboard'>Dashboard</Button>
+                    </>
+                    )}
+                    {currentPage == "Focus" && (
+                    <>
+                        <Button sx={dashboardButtonStyle} color="inherit" href='dashboard'>Dashboard</Button>
+                        <Button sx={dashboardButtonStyle} color="inherit" href='focus'>Focus</Button>
+                        <Button sx={dashboardButtonStyle} color="inherit" href='calendar'>Calendar</Button>
+                    </>
+                    )}
                 </>
                 )}
                 </Toolbar>
