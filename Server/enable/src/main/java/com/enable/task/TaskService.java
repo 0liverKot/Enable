@@ -21,7 +21,7 @@ public class TaskService {
     public void insertTask(Task task) {
 
         // check if task is duplicate
-        if(taskRepository.getTaskByName(task.taskName).size() != 0) {
+        if(taskRepository.getTaskByNameForUser(task.taskName, task.uid).size() != 0) {
             throw new IllegalStateException("Task with name: " + task.taskName + " already exists");
         }
 
@@ -30,8 +30,8 @@ public class TaskService {
         List<String> unfilledFields = new ArrayList<>();  
         for(Field field : fields) {
             try {
-                // id is always empty since it is auto generated
-                if(field.getName() == "id") {
+                // these fields will be auto generated so are passed as empty
+                if(field.getName() == "id" || field.getName() == "dateAdded") {
                     continue;
                 }
                 if(field.get(task) == null || field.get(task).toString().isEmpty()) {
@@ -67,7 +67,7 @@ public class TaskService {
     // Put mappings
 
     @Transactional
-    public void updateTask(Integer id, Integer uid, String taskName, String taskDescription, Integer duration, Frequency frequency) {
+    public void updateTask(Integer id, Integer uid, String taskName, String taskDescription, Integer duration, String frequencyOption, String custom) {
         
         // check valid name
         for(Task task : getAllTasksByUser(uid)) {
@@ -88,7 +88,7 @@ public class TaskService {
         task.setTaskName(taskName);
         task.setTaskDescription(taskDescription);
         task.setDurationMinutes(duration);
-        task.setFrequency(frequency);
+        task.setFrequency(frequencyOption, custom);
     }
 
     // Get mappings
@@ -110,7 +110,7 @@ public class TaskService {
             
             // dateCounter will be incremented according to the task's frequency to see if it will appear on specified date
             LocalDate dateCounter = task.getDateAdded();
-            String frequency = task.getFrequency().getFrequencyDays();
+            String frequency = task.getFrequency();
 
             boolean custom = false; 
             String[] customFrequency = null;

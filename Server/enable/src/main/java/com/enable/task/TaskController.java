@@ -27,6 +27,9 @@ public class TaskController {
     
     @PostMapping
     public void addNewTask(@RequestBody Task task) {
+        
+        task.setFrequency(task.getFrequencyOption(), task.getCustom());
+        
         taskService.insertTask(task);
     }
 
@@ -38,9 +41,10 @@ public class TaskController {
         @RequestParam(required = false) String taskName,
         @RequestParam(required = false) String taskDescription,
         @RequestParam(required = false) Integer durationMinutes,
-        @RequestParam(required = false) Frequency frequency
+        @RequestParam(required = false) String frequencyOption,
+        @RequestParam(required = false) String custom
     ) {
-        taskService.updateTask(id, uid, taskName, taskDescription, durationMinutes, frequency);
+        taskService.updateTask(id, uid, taskName, taskDescription, durationMinutes, frequencyOption, custom);
     }
 
     // Get mappings

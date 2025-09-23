@@ -1,18 +1,12 @@
 package com.enable.task;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
-import java.util.ArrayList;
-
-import jakarta.persistence.AttributeOverride;
-import jakarta.persistence.AttributeOverrides;
-import jakarta.persistence.Embedded;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "tasks", schema = "public")
@@ -26,20 +20,26 @@ public class Task {
     public String taskDescription;
     public Integer durationMinutes;
     
-    @Embedded
-    public Frequency frequency = new Frequency();
+    // not stored in db 
+    @Transient
+    private String frequencyOption;
+    @Transient
+    private String custom;
+
+    public String frequency;
     public LocalDate dateAdded;
 
     public Task() {}
 
-    public Task(Integer id, Integer uid, String taskName, String taskDescription, Integer durationMinutes, String frequenyOption, String custom) {
+    public Task(Integer id, Integer uid, String taskName, String taskDescription, Integer durationMinutes, String frequencyOption, String custom) {
         this.id = id;
         this.uid = uid;
         this.taskName = taskName;
         this.taskDescription = taskDescription;
         this.durationMinutes = durationMinutes;
-        this.frequency = new Frequency(frequenyOption, custom);
-        this.dateAdded = LocalDate.now();
+        this.frequencyOption = frequencyOption;
+        this.custom = custom;
+        
     }
 
     public Integer getId() {
@@ -82,15 +82,33 @@ public class Task {
         this.durationMinutes = durationMinutes;
     }
 
-    public Frequency getFrequency() {
+    public String getFrequency() {
         return this.frequency;
     }
 
-    public void setFrequency(Frequency frequency) {
-        this.frequency = frequency;
+    public void setFrequency(String frequencyOption, String custom) {
+        
+        Frequency frequency = new Frequency(frequencyOption, custom);
+        this.frequency = frequency.getFrequencyDays();
     }
 
     public LocalDate getDateAdded() {
         return this.dateAdded;
+    }
+
+    public void setFrequencyOption(String frequencyOption) {
+        this.frequencyOption = frequencyOption;
+    }
+
+    public String getFrequencyOption() {
+        return this.frequencyOption;
+    }
+
+    public void setCustom(String custom) {
+        this.custom = custom;
+    }
+
+    public String getCustom() {
+        return this.custom;
     }
 }
