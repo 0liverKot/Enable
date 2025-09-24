@@ -19,7 +19,7 @@ export const userService = {
 
 export const taskService = {
     addNewTask: (data) => api.post('/tasks', data),
-    updateTask: (id, uid, data) => api.put(`/tasks/${id}/${uid}`),
+    updateTask: (id, uid, data) => api.put(`/tasks/${id}/${uid}`, data),
     getTaskById: (id) => api.get(`/tasks/${id}`),
     getAllTasks: () => api.get('/tasks/getAll'),
     getTaskByUser: (uid) => api.get(`/tasks/getAll/${uid}`),
