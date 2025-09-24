@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.util.Objects;
 
 import org.springframework.lang.NonNull;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -15,7 +18,8 @@ import jakarta.servlet.http.HttpServletResponse;
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    private final JwtService jwtService; 
+    private JwtService jwtService; 
+    private UserDetailsService userDetailsService;
 
     @Override
     protected void doFilterInternal(
@@ -36,7 +40,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
                 // index after "Bearer " is 7 
                 jwtToken = authHeader.substring(7);
-                 userEmail =  jwtService.extractUsername(jwtToken);
+                userEmail =  jwtService.extractUsername(jwtToken);
+
+                // user is not yet connected
+                if(!Objects.isNull(userEmail) && Objects.isNull(SecurityContextHolder.getContext().getAuthentication())) {
+                    UserDetails userDetails = this.userDetailsService.loadByUsername(userEmail);
+                }
             }
       
 }
