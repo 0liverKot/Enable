@@ -1,12 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import theme from "./theme";
 import Navbar from "./Components/Navbar";
 import { ThemeProvider } from "@emotion/react";
 import { Container, Grid } from "@mui/material";
 
 const CalendarPage = () => {
-
-
 
     return (
         <>
@@ -15,7 +13,6 @@ const CalendarPage = () => {
             <Container maxWidth={"xxl"}>
                 <Grid container>
                     <Grid size={3}>
-                        
                     </Grid>
                     <Grid size={9}>
                         <>
