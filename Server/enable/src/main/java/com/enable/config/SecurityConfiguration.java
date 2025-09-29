@@ -2,6 +2,7 @@ package com.enable.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -13,8 +14,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfiguration {
 
     private JwtAuthenticationFilter jwtAuthFilter;
-    private AuthenticationProvidor authProvidor;
+    private AuthenticationProvider authProvider;
 
+    @SuppressWarnings("removal")
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         
@@ -29,7 +31,7 @@ public class SecurityConfiguration {
             .sessionManagment()
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
-            .authenticationProvidor(authProvidor)
+            .authenticationProvidor(authProvider)
             .addFilterBefore(JwtAuthFiler, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
