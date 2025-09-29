@@ -34,7 +34,7 @@ public class AuthenticationService {
         return new AuthenticationResponse(jwtToken);
     }
 
-    public AuthenticationResponse authenticate(RegisterRequest request) {
+    public AuthenticationResponse authenticate(AuthenticationRequest request) {
         
         authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
