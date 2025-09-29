@@ -23,7 +23,8 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // auto generates id values
     private Integer id;
-    private String name;
+    private String firstName;
+    private String lastName;
     private String password;
     private String email;
 
@@ -32,9 +33,9 @@ public class User implements UserDetails {
 
     public User() {}
 
-    public User(Integer id, String name, String password, String email, Role role) {
-        this.id = id;
-        this.name = name;
+    public User(String firstName, String lastName, String password, String email, Role role) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.password = password;
         this.email = email;
         this.role = role;
@@ -48,14 +49,22 @@ public class User implements UserDetails {
         this.id = id;
     }
 
-    public String getName() {
-        return this.name;
+        public String getFirstName() {
+        return this.firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
+    public String getLastName() {
+        return this.lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+    
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(this.role.name()));

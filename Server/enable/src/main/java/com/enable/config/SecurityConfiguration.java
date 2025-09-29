@@ -23,16 +23,16 @@ public class SecurityConfiguration {
         http.csrf()
             .disable()
             .authorizeHttpRequests()
-            .requestMatchers(null) // requests here will be whitelisted
+            .requestMatchers("") // requests here will be whitelisted
             .permitAll()
             .anyRequest() // all others are authenticated
             .authenticated()
             .and()
-            .sessionManagment()
+            .sessionManagement()
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
-            .authenticationProvidor(authProvider)
-            .addFilterBefore(JwtAuthFiler, UsernamePasswordAuthenticationFilter.class);
+            .authenticationProvider(authProvider)
+            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     } 
