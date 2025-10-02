@@ -32,12 +32,17 @@ public class UserController {
     }
 
     // Put mappings
+    
+    // TODO: chnage to a change username method
+    
+    /* 
     @PutMapping("/change/{id}")
     public void changeUserName(
         @PathVariable Integer id,
         @RequestParam String newName) {
             userService.changeUserName(id, newName);
     }
+            */
 
     // Get mappings
 

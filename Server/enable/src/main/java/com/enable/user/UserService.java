@@ -23,6 +23,8 @@ public class UserService {
 
     // Put mappings 
     @Transactional
+    // TODO: change to a change email method 
+    /* 
     public void changeUserName(Integer id, String newName) {
         
         boolean exists = userRepository.existsById(id);
@@ -44,6 +46,7 @@ public class UserService {
         User user = getUserById(id);
         user.setName(newName);
     }
+        */
 
     // Get mappings 
 
