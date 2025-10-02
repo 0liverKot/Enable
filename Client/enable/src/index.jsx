@@ -4,8 +4,15 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import App from './Dashboard.jsx'
 import CalendarPage from './CalendarPage.jsx'
 import ErrorPage from "./ErrorPage.jsx"
+import SignUp from './SignUp.jsx';
 
 const router = createBrowserRouter([
+    {
+    
+        path: "/",
+        element: <App/>,
+        errorElement: <ErrorPage />,
+    },
     {
         path: "/dashboard",
         element: <App/>,
@@ -14,6 +21,11 @@ const router = createBrowserRouter([
     {
         path: "/calendar",
         element: <CalendarPage/>,
+        errorElement: <ErrorPage/>
+    },
+    {
+        path: "/signup",
+        element: <SignUp/>,
         errorElement: <ErrorPage/>
     }
 ]);
