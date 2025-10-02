@@ -23,7 +23,7 @@ public class UserService {
 
     // Put mappings 
     @Transactional
-    // TODO: change to a change email method 
+    // TODO: change to a change email methodset 
     /* 
     public void changeUserName(Integer id, String newName) {
         

@@ -19,15 +19,14 @@ public class Task {
     public String taskName;
     public String taskDescription;
     public Integer durationMinutes;
+    public String frequency;
+    public LocalDate dateAdded;
     
     // not stored in db 
     @Transient
     private String frequencyOption;
     @Transient
     private String custom;
-
-    public String frequency;
-    public LocalDate dateAdded;
 
     public Task() {}
 

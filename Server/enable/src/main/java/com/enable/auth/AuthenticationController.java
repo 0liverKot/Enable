@@ -10,8 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/auth")
 public class AuthenticationController {
    
-    private AuthenticationService service;
+    private final AuthenticationService service;
     
+    public AuthenticationController(AuthenticationService service) {
+        this.service = service;
+    }
+
     @PostMapping("/register") 
         public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) {
             

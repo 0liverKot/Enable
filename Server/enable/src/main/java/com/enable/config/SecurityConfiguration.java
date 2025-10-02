@@ -13,8 +13,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfiguration {
 
-    private JwtAuthenticationFilter jwtAuthFilter;
-    private AuthenticationProvider authProvider;
+    private final JwtAuthenticationFilter jwtAuthFilter;
+    private final AuthenticationProvider authProvider;
+
+    public SecurityConfiguration(JwtAuthenticationFilter jwtAuthFilter, AuthenticationProvider authProvider) {
+        this.jwtAuthFilter = jwtAuthFilter;
+        this.authProvider = authProvider;
+                                 }
 
     @SuppressWarnings("removal")
     @Bean
