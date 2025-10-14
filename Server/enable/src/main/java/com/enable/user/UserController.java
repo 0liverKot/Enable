@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -31,16 +33,12 @@ public class UserController {
 
     // Put mappings
     
-    // TODO: chnage to a change username method
-
-    /* 
     @PutMapping("/change/{id}")
     public void changeUserName(
         @PathVariable Integer id,
         @RequestParam String newName) {
-            userService.changeUserName(id, newName);
+            userService.changeUserEmail(id, newName);
     }
-            */
 
     // Get mappings
 
@@ -53,7 +51,7 @@ public class UserController {
     public User getUserById(@PathVariable Integer id) {
         return userService.getUserById(id);
     }
-    
+
     // Delete mappings
 
     @DeleteMapping("{id}")

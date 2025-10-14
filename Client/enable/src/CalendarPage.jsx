@@ -3,9 +3,19 @@ import theme from "./theme";
 import Navbar from "./Components/Navbar";
 import { ThemeProvider } from "@emotion/react";
 import { Container, Grid } from "@mui/material";
+import SignInCheck from "./SignInCheck";
+import RedirectToSignUp from "./RedirectToSIgnUp";
 
 const CalendarPage = () => {
 
+    const loggedIn = SignInCheck()
+
+    if(!loggedIn) {
+        return (
+            RedirectToSignUp()
+        )
+    }
+    
     return (
         <>
         <ThemeProvider theme={theme}>
