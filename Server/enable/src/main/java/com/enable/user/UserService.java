@@ -23,9 +23,7 @@ public class UserService {
 
     // Put mappings 
     @Transactional
-    // TODO: change to a change email methodset 
-    /* 
-    public void changeUserName(Integer id, String newName) {
+    public void changeUserEmail(Integer id, String newEmail) {
         
         boolean exists = userRepository.existsById(id);
         if(!exists) {
@@ -36,17 +34,16 @@ public class UserService {
         // check new name is unique
         List<User> allUsers = userRepository.findAll();
         for(User user : allUsers) {
-            if(user.getName().matches(newName)) {
+            if(user.getUsername().matches(newEmail)) {
                 throw new IllegalStateException(
-                    "Name: " + newName + " is taken"
+                    "Email: " + newEmail + " is taken"
                 );
             }
         }
         
         User user = getUserById(id);
-        user.setName(newName);
+        user.setUsername(newEmail);
     }
-        */
 
     // Get mappings 
 

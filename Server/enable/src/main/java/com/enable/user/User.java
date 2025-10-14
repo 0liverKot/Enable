@@ -80,4 +80,8 @@ public class User implements UserDetails {
         return this.email;
     }
 
+    public void setUsername(String email) {
+        this.email = email;
+    }
+
 }

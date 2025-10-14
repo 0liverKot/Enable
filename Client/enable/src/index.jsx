@@ -6,6 +6,8 @@ import CalendarPage from './CalendarPage.jsx'
 import ErrorPage from "./ErrorPage.jsx"
 import SignUp from './SignUp.jsx';
 
+localStorage.setItem("jwtToken", "null")
+
 const router = createBrowserRouter([
     {
     
@@ -31,7 +33,7 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+<React.StrictMode>
+   <RouterProvider router={router} />
+</React.StrictMode>
 );
