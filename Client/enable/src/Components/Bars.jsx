@@ -1,20 +1,21 @@
 import React from 'react';
-import { Box, Grid, Paper } from '@mui/material';
+import { Box, Grid, Paper, useTheme, ThemeProvider } from '@mui/material';
 
 const Bars = ({due, debt}) => {
+
 
     return (
     <Paper
     elevation={10}
     sx={{
         borderRadius: 5,
-        bgcolor: "#edeae4",
+        bgcolor: "seconary.main",
         height: "100%"
     }}>
         <Grid container spacing={0}
         sx={{
             borderRadius: 5,
-            bgcolor: "#edeae4",
+            bgcolor: "secondary.main",
             justifyContent: "center",
             alignItems: "flex-end",
             height: "100%"
@@ -34,7 +35,6 @@ const Bars = ({due, debt}) => {
             }}/>
         </Grid>    
     </Paper>
-
     )
 }
 

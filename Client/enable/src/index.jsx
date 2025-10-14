@@ -1,10 +1,12 @@
 import React, { StrictMode } from 'react';
 import * as ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import App from './Dashboard.jsx'
+import Dashboard from './Dashboard.jsx'
 import CalendarPage from './CalendarPage.jsx'
 import ErrorPage from "./ErrorPage.jsx"
 import SignUp from './SignUp.jsx';
+import { CssBaseline, ThemeProvider, useTheme } from '@mui/material';
+import theme from './theme.js';
 
 localStorage.setItem("jwtToken", "null")
 
@@ -12,12 +14,12 @@ const router = createBrowserRouter([
     {
     
         path: "/",
-        element: <App/>,
+        element: <Dashboard/>,
         errorElement: <ErrorPage />,
     },
     {
         path: "/dashboard",
-        element: <App/>,
+        element: <Dashboard/>,
         errorElement: <ErrorPage />,
     },
     {
@@ -34,6 +36,9 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 <React.StrictMode>
-   <RouterProvider router={router} />
+    <ThemeProvider theme={theme}>
+        <CssBaseline/>
+       <RouterProvider router={router} />
+    </ThemeProvider>
 </React.StrictMode>
 );

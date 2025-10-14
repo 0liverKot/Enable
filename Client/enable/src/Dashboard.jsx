@@ -13,7 +13,7 @@ const Dashboard = () => {
     
     const loggedIn = SignInCheck()
     
-    if(!loggedIn) {
+    if(loggedIn) {
         return (
             RedirectToSignUp()
         )
@@ -31,7 +31,8 @@ const Dashboard = () => {
                     alignItems: "center",
                     border: "solid 2px black",
                     margin: 2,
-                    height: "85vh"
+                    height: "85vh",
+                    bgcolor: "primary.main"
                 }}>
                     <Grid size={3} sx={{
                         height: "90%"}}>

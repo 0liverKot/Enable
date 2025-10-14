@@ -1,10 +1,13 @@
-import { Container, Paper, TextField, Typography, Box } from "@mui/material";
+import { Container, Paper, TextField, Typography, Box, Button} from "@mui/material";
 import React from "react";
+import theme from "./theme";
+import { ThemeProvider } from "@emotion/react";
 
 const SignUp = () => {
     
     return (
-        <> 
+        <>
+        <ThemeProvider theme={theme}>
         <Container maxWidth={"xs"}>
             <Paper elevation={10}
             sx={{
@@ -28,18 +31,28 @@ const SignUp = () => {
                 }}>
                     <TextField variant="outlined"
                     sx={{
-                        width: "75%"
+                        width: "75%",
+                        padding: 2
                     }}>
 
                     </TextField>
                     <TextField variant="outlined"
                     sx={{
-                        width: "75%"
+                        width: "75%",
+                        padding: 2
                     }}>
                     </TextField>
+                    <Button variant="Contained"
+                    sx={{
+                        width: "75%",
+                        padding: 2
+                    }}>
+                        Sign In
+                    </Button>
                 </Box>
             </Paper>
         </Container>
+        </ThemeProvider>
         </>
     )
 }
