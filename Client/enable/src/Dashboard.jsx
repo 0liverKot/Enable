@@ -13,7 +13,7 @@ const Dashboard = () => {
     
     const loggedIn = SignInCheck()
     
-    if(loggedIn) {
+    if(!loggedIn) {
         return (
             RedirectToSignUp()
         )
