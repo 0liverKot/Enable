@@ -13,6 +13,7 @@ export const userService = {
     changeUserName: (id, data) => api.put(`/users/change/${id}`, data),
     getAllUsers: () => api.get('/users/getAll'),
     getUserById: (id) => api.get(`/users/${id}`),
+    userExistsByEmail: (string) => api.get(`users/get/email/${string}`),
     deleteUser: (id) => api.delete(`/users/${id}`),
     deleteAllUsers: () => api.delete('/users/deleteAll')
 }

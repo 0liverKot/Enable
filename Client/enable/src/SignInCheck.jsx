@@ -1,12 +1,11 @@
-import UserApi from "./api/userMethods";
-
+import { getUserById } from "./api/userMethods"; 
 
 const SignInCheck = () => {
 
     const userId = localStorage.getItem("Id");
 
     try {
-        UserApi.checkUserExists(userId)    
+        getUserById(userId)    
     } catch (error) {
         return false
     }

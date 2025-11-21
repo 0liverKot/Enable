@@ -1,5 +1,7 @@
 package com.enable.auth;
 
+import java.util.Optional;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +21,12 @@ public class AuthenticationController {
     @PostMapping("/register") 
         public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) {
             
-            return ResponseEntity.ok(service.register(request));
+            try {
+                return ResponseEntity.ok(service.register(request));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
         }
         @PostMapping("/authenticate")
         public ResponseEntity<AuthenticationResponse> register(@RequestBody AuthenticationRequest request) {

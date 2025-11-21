@@ -1,6 +1,7 @@
 import { Container, Paper, TextField, Typography, Box, Button} from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router";
+import { userExistsByEmail } from "./api/userMethods";
 
 const SignUp = () => {
     
@@ -15,9 +16,10 @@ const SignUp = () => {
     const [passwordError, setPasswordError] = useState({boolean: false, message: ''})
     const [firstNameError, setFirstNameError] = useState({boolean: false, message: ''})
     const [lastNameError, setLastNameError] = useState({boolean: false, message: ''})
+        
 
-    const handleSignin = () => {
-
+    const handleSignin =  async () => {
+        
         // checking for empty fields 
         if(email === '') {
             setEmailError({boolean: true, message: "field is empty"})
@@ -54,6 +56,11 @@ const SignUp = () => {
 
         //TODO: add backend checks 
 
+        const response = await userExistsByEmail(email);
+
+        if(!hasAccount && (response.data !== null)) {
+            setEmailError({boolean: true, message: 'Account with this email has already been made'})
+        }
 
         return (
             <Navigate to='/dashboard'/>

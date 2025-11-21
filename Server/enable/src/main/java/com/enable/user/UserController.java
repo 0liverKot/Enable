@@ -1,6 +1,8 @@
 package com.enable.user;
 
+import java.lang.classfile.ClassFile.Option;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -50,6 +52,11 @@ public class UserController {
     @GetMapping("{id}")
     public User getUserById(@PathVariable Integer id) {
         return userService.getUserById(id);
+    }
+
+    @GetMapping("get/email/{email}")
+    public Optional<User> userExistsByEmail(@PathVariable String email) {
+        return userService.userExistsByEmail(email);
     }
 
     // Delete mappings

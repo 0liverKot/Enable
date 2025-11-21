@@ -1,6 +1,8 @@
 package com.enable.user;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -57,6 +59,10 @@ public class UserService {
                 "User with id " + id + " not found"
             ) 
         );
+    }  
+
+    public Optional<User> userExistsByEmail(String email) {
+        return userRepository.findUserByEmail(email);
     }
 
     // Delete mappings 

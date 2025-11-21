@@ -1,17 +1,9 @@
 import { userService } from "./apiService";
 
-// api calls for user entity
-
-class UserApi {
-
-    constructor() {
-        this.service = userService;
-    } 
-    
-    checkUserExists(id) {
-        this.service.getUserById(id)
-    }
-
+export const getUserById = (id) => {
+    return userService.getUserById(id);
 }
 
-export default UserApi;
+export const userExistsByEmail = (email) => {
+    return userService.userExistsByEmail(email);
+}

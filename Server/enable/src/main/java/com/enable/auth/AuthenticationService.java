@@ -25,9 +25,13 @@ public class AuthenticationService {
         this.jwtService = jwtService;
         this.authenticationManager = authenticationManager;
     }
-    public AuthenticationResponse register(RegisterRequest request) {
+    public AuthenticationResponse register(RegisterRequest request) throws Exception {
         
-        var user = new User(
+        if(userRepository.findUserByEmail(request.getEmail()).isPresent()) {
+            throw new Exception("User with email: " + request.getEmail() + "already exists");
+        }
+
+         var user = new User(
             request.getFirstName(),
             request.getLastName(),
             passwordEncoder.encode(request.getPassword()),   

@@ -28,7 +28,7 @@ public class SecurityConfiguration {
         http.csrf()
             .disable()
             .authorizeHttpRequests()
-            .requestMatchers("/api/auth/**") // requests here will be whitelisted
+            .requestMatchers("/api/auth/**", "users/get/email/*") // requests here will be whitelisted
             .permitAll()
             .anyRequest() // all others are authenticated
             .authenticated()
@@ -38,7 +38,8 @@ public class SecurityConfiguration {
             .and()
             .authenticationProvider(authProvider)
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
-
+        
+            http.cors().and().csrf().disable();
         return http.build();
     } 
 }
