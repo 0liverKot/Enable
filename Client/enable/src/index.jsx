@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import Dashboard from './Dashboard.jsx'
 import CalendarPage from './CalendarPage.jsx'
 import ErrorPage from "./ErrorPage.jsx"
-import SignUp from './SignIn.jsx';
+import SignUp from './Signup.jsx';
 import { CssBaseline, ThemeProvider, useTheme } from '@mui/material';
 import theme from './theme.js';
 
@@ -28,7 +28,7 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage/>
     },
     {
-        path: "/signin",
+        path: "/signup",
         element: <SignUp/>,
         errorElement: <ErrorPage/>
     }
