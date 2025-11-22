@@ -8,7 +8,8 @@ import SignUp from './Signup.jsx';
 import { CssBaseline, ThemeProvider, useTheme } from '@mui/material';
 import theme from './theme.js';
 
-localStorage.setItem("jwtToken", "null")
+localStorage.setItem("JwtToken", "null")
+localStorage.setItem("userId", "null")
 
 const router = createBrowserRouter([
     {

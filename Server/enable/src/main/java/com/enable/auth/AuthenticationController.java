@@ -28,6 +28,7 @@ public class AuthenticationController {
             }
             return null;
         }
+
         @PostMapping("/authenticate")
         public ResponseEntity<AuthenticationResponse> register(@RequestBody AuthenticationRequest request) {
 

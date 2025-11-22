@@ -3,7 +3,7 @@ import theme from "./theme";
 import Navbar from "./Components/Navbar";
 import { ThemeProvider } from "@emotion/react";
 import { Container, Grid } from "@mui/material";
-import SignInCheck from "./SignInCheck";
+import SignInCheck from "./checkToken";
 import RedirectToSignUp from "./RedirectToSIgnUp";
 
 const CalendarPage = () => {

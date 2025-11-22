@@ -29,4 +29,9 @@ export const taskService = {
     deleteAllUsersTasks: (uid) => api.delete(`/tasks/deleteAll/${uid}`)
 }
 
+export const authService= {
+    authRegister: (data) => api.post('/api/auth/register', data),
+    authAuthenticate: (data) => api.post('/api/auth/authenticate', data)
+}
+
 export default api; 

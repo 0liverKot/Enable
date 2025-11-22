@@ -2,6 +2,7 @@ import { Container, Paper, TextField, Typography, Box, Button} from "@mui/materi
 import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router";
 import { userExistsByEmail } from "./api/userMethods";
+import { authenticateUser, registerUser } from "./api/authMethods";
 
 const SignUp = () => {
     
@@ -20,47 +21,90 @@ const SignUp = () => {
 
     const handleSignin =  async () => {
         
+        var fieldError = false;
+
         // checking for empty fields 
         if(email === '') {
             setEmailError({boolean: true, message: "field is empty"})
+            fieldError = true;
         }
         if(password === '') {
             setPasswordError({boolean: true, message: 'field is empty'})
+            fieldError = true;
         }
 
         if(!hasAccount) {
             if (firstName === '') {
                 setPasswordError({boolean: true, message: 'field is empty'})
+                fieldError = true;
             }
             if (lastName == '') {
                 setPasswordError({boolean: true, message: 'field is empty'})
+                fieldError = true;
             }
         
         if(password.length > 30) {
             setPasswordError({boolean: true, message: 'password is too long'})
+            fieldError = true;
         }
         if(firstName.length > 30) {
             setFirstNameError({boolean: true, message: 'first name is too long'})
+            fieldError = true;
         }
         if(lastName.length > 30) {
             setLastNameError({boolean: true, message: 'last name is too long'})
+            fieldError = true;
         }
 
         }
 
         // checking if a suitable email pattern is used
-        const emailPattern = new RegExp("^[^\s@]+@[^\s@]+\.[^\s@]+$");
+        const emailPattern = new RegExp("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
         if(!emailPattern.test(email)) {
             setEmailError({boolean: true, message: 'invalid email pattern'})
+            fieldError = true;
         }
 
-        //TODO: add backend checks 
 
-        const response = await userExistsByEmail(email);
-
+        var response = await userExistsByEmail(email);
         if(!hasAccount && (response.data !== null)) {
             setEmailError({boolean: true, message: 'Account with this email has already been made'})
+            fieldError = true;
         }
+        
+        // return if there are any failures
+        if(fieldError) { return }
+
+        console.log("reached")
+        var data = {
+            "email": email,
+            "password": password
+        }
+        var response = null
+
+        // registration or authentication 
+        if(hasAccount) {
+            response = await authenticateUser(data)
+            if(response.data === null) {
+                setAuthFailed(true);
+                return 
+            }
+        } else {
+            
+            data["firstName"] = firstName
+            data["lastName"] = lastName
+            response = await registerUser(data)
+            if(response.data === null) {
+                setRegisterFailed(true)
+                return
+            }
+        }           
+
+        const token = response.data.token;
+        response = await userExistsByEmail(email)
+        const userId = response.data.id
+        localStorage.setItem("JwtToken", token)
+        localStorage.setItem("userId", userId)
 
         return (
             <Navigate to='/dashboard'/>

@@ -6,14 +6,12 @@ import UpcomingDisplay from './Components/UpcomingDisplay'
 import AllBarsDisplay from './Components/AllBarsDisplay'
 import { ThemeProvider } from "@emotion/react";
 import { Container, Grid, Toolbar } from "@mui/material";
-import SignInCheck from "./SignInCheck";
+import SignInCheck from "./checkToken";
 import RedirectToSignUp from "./RedirectToSIgnUp";
 
 const Dashboard = () => {
     
-    const loggedIn = SignInCheck()
-    
-    if(!loggedIn) {
+    if(!checkToken()) {
         return (
             RedirectToSignUp()
         )
