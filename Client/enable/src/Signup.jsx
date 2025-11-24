@@ -1,6 +1,6 @@
 import { Container, Paper, TextField, Typography, Box, Button} from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { Navigate } from "react-router";
+import { Navigate, useNavigate } from "react-router";
 import { userExistsByEmail } from "./api/userMethods";
 import { authenticateUser, registerUser } from "./api/authMethods";
 import Alert from '@mui/material/Alert';
@@ -21,6 +21,8 @@ const SignUp = () => {
     const [lastNameError, setLastNameError] = useState({boolean: false, message: ''})
         
     const [authFailed, setAuthFailed] = useState(false)
+
+    const navigate = useNavigate()
 
     const handleSignin =  async () => {
         
@@ -86,7 +88,7 @@ const SignUp = () => {
 
         // registration or authentication 
         if(hasAccount) {
-            response = authenticateUser(data)
+            response = await authenticateUser(data)
             if(response.success === false) {
                 setAuthFailed(true);
                 return 
@@ -108,9 +110,8 @@ const SignUp = () => {
         localStorage.setItem("JwtToken", token)
         localStorage.setItem("userId", userId)
 
-        return (
-            <Navigate to='/dashboard'/>
-        )
+        console.log("reached end")
+        navigate('/dashboard')
     }
 
     const handleHasAccount = () => {
