@@ -9,14 +9,13 @@ const Bars = ({due, debt}) => {
     elevation={10}
     sx={{
         borderRadius: 5,
-        bgcolor: "seconary.main",
         height: "100%"
     }}>
         <Grid container spacing={0}
         sx={{
             borderRadius: 5,
-            bgcolor: "secondary.main",
             justifyContent: "center",
+            bgcolor: "primary.secondary",
             alignItems: "flex-end",
             height: "100%"
         }}    

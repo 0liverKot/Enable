@@ -6,8 +6,8 @@ import UpcomingDisplay from './Components/UpcomingDisplay'
 import AllBarsDisplay from './Components/AllBarsDisplay'
 import { ThemeProvider } from "@emotion/react";
 import { Container, Grid, Toolbar } from "@mui/material";
-import CheckToken from "./checkToken";
-import RedirectToSignUp from "./RedirectToSIgnUp";
+import CheckToken from "./utils/checkToken";
+import RedirectToSignUp from "./utils/RedirectToSIgnUp";
 
 const Dashboard = () => {
     
@@ -21,16 +21,14 @@ const Dashboard = () => {
         <>
         <ThemeProvider theme={theme}>
             <Navbar currentPage={"dashboard"}/>
-            <Container maxWidth={"xxl"}>
+            <Container maxWidth={"xl"}>
                 <Grid container
                 spacing={8}
                 sx={{
                     justifyContent: "center",
                     alignItems: "center",
-                    border: "solid 2px black",
                     margin: 2,
                     height: "85vh",
-                    bgcolor: "primary.main"
                 }}>
                     <Grid size={3} sx={{
                         height: "90%"}}>

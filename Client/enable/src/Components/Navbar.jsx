@@ -1,7 +1,7 @@
 import React from 'react'
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
-import { AppBar, Box, Toolbar, Button, IconButton, useMediaQuery, useTheme, Container, ThemeProvider } from '@mui/material'
+import { AppBar, Box, Toolbar, Button, IconButton, useMediaQuery, useTheme, Container, ThemeProvider, Zoom } from '@mui/material'
 
 const Navbar = ({currentPage}) => {
 
@@ -10,13 +10,17 @@ const Navbar = ({currentPage}) => {
     const isMobile = useMediaQuery(theme.breakpoints.down('md'))
 
     const NavbarButtonStyle = {
-        bgcolor: 'secondary.dark',
-        width: 1
+        bgcolor: 'secondary.main',
+        opacity: "50%",
+        width: 1,
+        '&:hover': {
+            opacity: "90%",
+        }
     }
 
     return (
         <>
-        <AppBar position="sticky" sx={{bgcolor: "secondary.main"}}>
+        <AppBar position="sticky" sx={{bgcolor: "primary.secondary"}}>
             <Toolbar sx={{
                 gap: 10,
                 height: "10vh"
