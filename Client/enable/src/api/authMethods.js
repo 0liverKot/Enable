@@ -5,5 +5,16 @@ export const registerUser = (data) => {
 }
 
 export const authenticateUser = (data) => {
-    return authService.authAuthenticate(data);
+    
+    const response = authService.authAuthenticate(data);
+        
+    if(response.data === undefined) {
+        return {
+            success: false
+        }
+    }
+    return {
+        success: true,
+        data: response.data
+    }
 }

@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router";
 import { userExistsByEmail } from "./api/userMethods";
 import { authenticateUser, registerUser } from "./api/authMethods";
+import Alert from '@mui/material/Alert';
+
 
 const SignUp = () => {
     
@@ -18,6 +20,7 @@ const SignUp = () => {
     const [firstNameError, setFirstNameError] = useState({boolean: false, message: ''})
     const [lastNameError, setLastNameError] = useState({boolean: false, message: ''})
         
+    const [authFailed, setAuthFailed] = useState(false)
 
     const handleSignin =  async () => {
         
@@ -75,7 +78,6 @@ const SignUp = () => {
         // return if there are any failures
         if(fieldError) { return }
 
-        console.log("reached")
         var data = {
             "email": email,
             "password": password
@@ -84,8 +86,8 @@ const SignUp = () => {
 
         // registration or authentication 
         if(hasAccount) {
-            response = await authenticateUser(data)
-            if(response.data === null) {
+            response = authenticateUser(data)
+            if(response.success === false) {
                 setAuthFailed(true);
                 return 
             }
@@ -95,7 +97,7 @@ const SignUp = () => {
             data["lastName"] = lastName
             response = await registerUser(data)
             if(response.data === null) {
-                setRegisterFailed(true)
+                setSignInFailed(true)
                 return
             }
         }           
@@ -262,6 +264,13 @@ const SignUp = () => {
                         Back to Sign Up
                     </Button>
                     </>
+                )}
+                {authFailed && (
+                    <Alert severity="error" variant="filled"
+                    onClose={() => setAuthFailed(false)}
+                    sx={{
+                        position: "absolute",
+                    }}> Incorrect Details </Alert>
                 )}
                 </Box>
             </Paper>
