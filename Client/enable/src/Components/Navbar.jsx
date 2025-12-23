@@ -15,6 +15,7 @@ const Navbar = ({currentPage}) => {
         width: 1,
         '&:hover': {
             opacity: "90%",
+            scale: 1.05
         }
     }
 

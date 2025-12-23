@@ -23,12 +23,12 @@ const Dashboard = () => {
             <Navbar currentPage={"dashboard"}/>
             <Container maxWidth={"xl"}>
                 <Grid container
-                spacing={8}
+                spacing={10}
                 sx={{
                     justifyContent: "center",
                     alignItems: "center",
                     margin: 2,
-                    height: "85vh",
+                    height: "80vh",
                 }}>
                     <Grid size={3} sx={{
                         height: "90%"}}>
