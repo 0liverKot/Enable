@@ -48,6 +48,13 @@ const Navbar = ({currentPage}) => {
                     <Button sx={NavbarButtonStyle} href='focus'>Focus</Button>
                 </>
                 )}
+                {currentPage == "other" && (
+                <>
+                    <Button sx={NavbarButtonStyle} href='calendar'>Calendar</Button>
+                    <Button sx={NavbarButtonStyle} href='dashboard'>Dashboard</Button>
+                    <Button sx={NavbarButtonStyle} href='focus'>Focus</Button>
+                </>
+                )}
                 {currentPage == "calendar" && (
                 <>
                     <Button sx={NavbarButtonStyle} href='focus'>Focus</Button>

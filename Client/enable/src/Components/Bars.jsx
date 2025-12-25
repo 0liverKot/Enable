@@ -11,7 +11,6 @@ const Bars = ({due, debt}) => {
         borderRadius: 5,
         height: "100%",
         background: "none",
-        height: "100%",
     }}>
         <Grid container spacing={0}
         sx={{

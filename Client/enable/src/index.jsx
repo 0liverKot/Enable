@@ -5,6 +5,7 @@ import Dashboard from './Dashboard.jsx'
 import CalendarPage from './CalendarPage.jsx'
 import ErrorPage from "./ErrorPage.jsx"
 import SignUp from './Signup.jsx';
+import TotalTasksPage from './TotalTasksPage.jsx';
 import { CssBaseline, ThemeProvider, useTheme } from '@mui/material';
 import theme from './theme.js';
 
@@ -31,6 +32,11 @@ const router = createBrowserRouter([
     {
         path: "/signup",
         element: <SignUp/>,
+        errorElement: <ErrorPage/>
+    },
+    {
+        path: "/alltasks",
+        element: <TotalTasksPage/>,
         errorElement: <ErrorPage/>
     }
 ]);
