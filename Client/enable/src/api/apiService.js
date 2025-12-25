@@ -20,11 +20,12 @@ export const userService = {
 
 export const taskService = {
     addNewTask: (data) => api.post('/tasks', data),
-    updateTask: (id, uid, data) => api.put(`/tasks/${id}/${uid}`, data),
+    updateTask: (id, uid, data) => api.put(`/tasks/update/${id}/${uid}`, data),
+    updateNextAppearances: (id) => api.put(`/tasks/updateNextAppearances/${id}`),
     getTaskById: (id) => api.get(`/tasks/${id}`),
     getAllTasks: () => api.get('/tasks/getAll'),
-    getTaskByUser: (uid) => api.get(`/tasks/getAll/${uid}`),
-    getTaskByDay: (day, uid) => api.get(`/tasks/getAll/${day}/${uid}`),
+    getTasksByUser: (uid) => api.get(`/tasks/getAll/${uid}`),
+    getTasksByDay: (day, uid) => api.get(`/tasks/getAll/${day}/${uid}`),
     deleteTask: (id) => api.delete(`/tasks/${id}`),
     deleteAllUsersTasks: (uid) => api.delete(`/tasks/deleteAll/${uid}`)
 }
