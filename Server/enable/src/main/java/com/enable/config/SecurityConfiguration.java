@@ -28,7 +28,7 @@ public class SecurityConfiguration {
         http.csrf()
             .disable()
             .authorizeHttpRequests()
-            .requestMatchers("/api/auth/**", "users/get/email/*") // requests here will be whitelisted
+            .requestMatchers("/api/auth/**", "/users/get/email/*", "/tasks/**") // requests here will be whitelisted
             .permitAll()
             .anyRequest() // all others are authenticated
             .authenticated()

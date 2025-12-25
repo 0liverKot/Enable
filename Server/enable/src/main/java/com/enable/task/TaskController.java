@@ -30,6 +30,7 @@ public class TaskController {
         
         task.setFrequency(task.getFrequencyOption(), task.getCustom());
         task.setDateAdded();
+        task.setNextAppearance();
 
         taskService.insertTask(task);
     }

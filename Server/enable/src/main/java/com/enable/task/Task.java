@@ -1,6 +1,10 @@
 package com.enable.task;
 
 import java.time.LocalDate;
+
+import org.aspectj.internal.lang.annotation.ajcDeclareAnnotation;
+import org.springframework.cglib.core.Local;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,6 +25,7 @@ public class Task {
     public Integer durationMinutes;
     public String frequency;
     public LocalDate dateAdded;
+    public LocalDate nextAppearance; 
     
     // not stored in db 
     @Transient
@@ -38,7 +43,6 @@ public class Task {
         this.durationMinutes = durationMinutes;
         this.frequencyOption = frequencyOption;
         this.custom = custom;
-        
     }
 
     public Integer getId() {
@@ -113,5 +117,22 @@ public class Task {
 
     public String getCustom() {
         return this.custom;
+    }
+
+    public void setNextAppearance() {
+        LocalDate currentDate = LocalDate.now();
+        
+        String frequency;
+        if(this.frequency.contains("/")) {
+            frequency = this.frequency.split("/")[0];
+        } else {
+            frequency = this.frequency;
+        }
+
+        this.nextAppearance = currentDate.plusDays(Integer.parseInt(frequency));
+    }
+
+    public LocalDate getNextAppearance() {
+        return this.nextAppearance;
     }
 }

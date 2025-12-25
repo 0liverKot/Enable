@@ -35,7 +35,7 @@ public class TaskService {
         for(Field field : fields) {
             try {
                 // these fields will be auto generated so are passed as empty
-                if(field.getName() == "id" || field.getName() == "dateAdded") {
+                if(field.getName() == "id" || field.getName() == "dateAdded" || field.getName() == "nextAppearance") {
                     continue;
                 }
                 if(field.get(task) == null || field.get(task).toString().isEmpty()) {
