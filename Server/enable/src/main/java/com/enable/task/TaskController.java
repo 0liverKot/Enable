@@ -30,7 +30,7 @@ public class TaskController {
         
         task.setFrequency(task.getFrequencyOption(), task.getCustom());
         task.setDateAdded();
-        task.setNextAppearance();
+        task.initialiseNextAppearance();
 
         taskService.insertTask(task);
     }
@@ -43,6 +43,13 @@ public class TaskController {
         @RequestBody(required = false) Map<String, Object> body
     ) {
         taskService.updateTask(id, uid, body);
+    }
+
+    // this update increments the current nextAppearences so should only be called once that date has been passed 
+    // TODO: handles update for a change in the frequency instead of incrementing for next appearence
+    @PutMapping("updateNextAppearance/{id}")
+    public void updateNextAppearances(@PathVariable Integer id) {
+        taskService.updateNextAppearances(id);
     }
 
     // Get mappings

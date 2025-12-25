@@ -119,7 +119,7 @@ public class Task {
         return this.custom;
     }
 
-    public void setNextAppearance() {
+    public void initialiseNextAppearance() {
         LocalDate currentDate = LocalDate.now();
         
         String frequency;
@@ -130,6 +130,10 @@ public class Task {
         }
 
         this.nextAppearance = currentDate.plusDays(Integer.parseInt(frequency));
+    }
+
+    public void setNextAppearance(LocalDate nextAppearance) {
+        this.nextAppearance = nextAppearance;
     }
 
     public LocalDate getNextAppearance() {

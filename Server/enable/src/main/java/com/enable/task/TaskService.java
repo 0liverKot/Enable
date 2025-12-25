@@ -126,6 +126,17 @@ public class TaskService {
         task.setCustom(custom);
         task.setFrequency(task.getFrequencyOption(), task.getCustom());
     }
+
+    @Transactional
+    public void updateNextAppearances(Integer id) {
+        Task task = getTaskById(id);
+        String frequency = task.getFrequency();
+
+        if(frequency.contains("/")) {
+            frequency = frequency.split("/")[0];
+        }
+        task.setNextAppearance(task.getNextAppearance().plusDays(Integer.parseInt(frequency)));
+    }
     
     // Get mappings
     
