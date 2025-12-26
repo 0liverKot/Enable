@@ -8,12 +8,10 @@ import TotalBars from './Components/TotalBars'
 
 const TotalTasksPage = () => {
 
-    useEffect(() => {
-        if(!CheckToken()) {
-            return (RedirectToSignUp())
-        }
-    }, []);
-
+    if(!CheckToken()) {
+        return (RedirectToSignUp())
+    }
+    
     return (
         <>
         <Navbar currentPage={"other"}/>

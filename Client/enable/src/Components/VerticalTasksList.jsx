@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getTasksByUser } from "../api/taskMethods";
 import { sortTasksByNextAppearance } from "../utils/sortTasksByNextAppearance";
+import TaskBox from "./TaskBox";
 
 const VerticalTasksList = () => {
 
@@ -8,7 +9,7 @@ const VerticalTasksList = () => {
 
     useEffect(() => {
         async function fetchTasks() {
-            const response = await getTasksByUser(2)
+            const response = await getTasksByUser(localStorage.getItem("userId"))
             setTasks(response.data)
         }
 
@@ -17,13 +18,16 @@ const VerticalTasksList = () => {
 
     useEffect(() => {
         sortTasksByNextAppearance(tasks)
-        console.log(tasks);
     }, [tasks]);
 
 
     return (
         <>
-            hello
+        {tasks.length !== 0 && (
+            <>
+            <TaskBox task={tasks[0]} debt={false}/>
+            </>
+        )}
         </>
     )
 }
