@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useDeferredValue, useEffect } from 'react'
 import VerticalTasksList from './Components/VerticalTasksList'
 import CheckToken from './utils/checkToken'
 import RedirectToSignUp from './utils/RedirectToSIgnUp'
@@ -8,11 +8,11 @@ import TotalBars from './Components/TotalBars'
 
 const TotalTasksPage = () => {
 
-    if(!CheckToken()) {
-        return (
-            RedirectToSignUp()
-        )
-    }
+    useEffect(() => {
+        if(!CheckToken()) {
+            return (RedirectToSignUp())
+        }
+    }, []);
 
     return (
         <>

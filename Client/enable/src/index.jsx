@@ -9,9 +9,6 @@ import TotalTasksPage from './TotalTasksPage.jsx';
 import { CssBaseline, ThemeProvider, useTheme } from '@mui/material';
 import theme from './theme.js';
 
-localStorage.setItem("JwtToken", "null")
-localStorage.setItem("userId", "null")
-
 const router = createBrowserRouter([
     {
     

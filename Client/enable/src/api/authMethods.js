@@ -5,15 +5,16 @@ export const registerUser = (data) => {
 }
 
 export const authenticateUser = async (data) => {
-    
-    const response = await authService.authAuthenticate(data);
-    if(response.data === undefined) {
+   
+    try {
+        const response = await authService.authAuthenticate(data);
+        return {
+            success: true,
+            data: response.data
+        }
+    } catch {
         return {
             success: false
         }
-    }
-    return {
-        success: true,
-        data: response.data
     }
 }

@@ -1,8 +1,8 @@
 const CheckToken = () => {
 
     const token = localStorage.getItem("JwtToken")
-
-    if(token === null) {
+    
+    if(Object.is(token, null)) {
         return false;
     }
 
