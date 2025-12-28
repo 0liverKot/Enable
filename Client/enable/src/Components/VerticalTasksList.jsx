@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getTasksByUser } from "../api/taskMethods";
 import { sortTasksByNextAppearance } from "../utils/sortTasksByNextAppearance";
 import TaskBox from "./TaskBox";
+import { Box } from "@mui/material";
 
 const VerticalTasksList = () => {
 
@@ -24,9 +25,24 @@ const VerticalTasksList = () => {
     return (
         <>
         {tasks.length !== 0 && (
-            <>
-            <TaskBox task={tasks[0]} debt={false}/>
-            </>
+            <Box
+            sx={{
+                bgcolor: "primary.main",
+                opacity: 0.8,
+                border: "1px solid gray",
+                borderRadius: 10,
+                height: "100%",
+                padding: 2,
+                overflowY: "scroll",
+                '&::-webkit-scrollbar': {
+                    position: "relative" // makes it dissapear 
+                },
+            }}>
+                {tasks.map((task, index) => (
+                    <TaskBox key={index} task={task} debt={false}/>
+                ))}
+
+            </Box>
         )}
         </>
     )

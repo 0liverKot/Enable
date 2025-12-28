@@ -15,7 +15,7 @@ const TotalTasksPage = () => {
     return (
         <>
         <Navbar currentPage={"other"}/>
-        <Container maxWidth={"xl"}>
+        <Container maxWidth={"xxl"}>
             <Grid 
             container
             spacing={10}
@@ -30,7 +30,11 @@ const TotalTasksPage = () => {
                     <TotalBars/>
                 </Grid>
                 
-                <Grid size={10} sx={{height: "90%"}}>
+                <Grid size={5} sx={{height: "90%"}}>
+                    <VerticalTasksList/>
+                </Grid>
+
+                <Grid size={5} sx={{height: "90%"}}>
                     <VerticalTasksList/>
                 </Grid>
             
