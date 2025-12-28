@@ -1,4 +1,4 @@
-import { Box, Paper, Typography } from "@mui/material";
+import { Box, duration, Paper, Typography } from "@mui/material";
 import React from "react";
 
 const TaskBox = ({task, debt}) => {
@@ -12,10 +12,26 @@ const TaskBox = ({task, debt}) => {
     var timeDisplay;
 
     if(daysLeft == 0) {
-        timeDisplay = hoursLeft + " Hours Remaining" 
+
+        timeDisplay = "Due in: " + hoursLeft + " Hours"
     } else {
-        timeDisplay = daysLeft + " Days " + hoursLeft + " Hours Remaining"
+        timeDisplay = "Due in: " + daysLeft + " Days " + hoursLeft + " Hours"
     }
+
+
+    const minutesToComplete = task.durationMinutes
+    const minutesDone = task.minutesDone
+    const minutesRemaining = minutesToComplete - minutesDone
+    var timeRemainingDisplay;
+
+    if (minutesRemaining > 60) {
+        const hoursRemaining = Math.floor(minutesRemaining / 60)
+        const minutesRemainder = minutesRemaining % 60
+        var timeRemainingDisplay = `${hoursRemaining} Hours ${minutesRemainder} Minutes: `
+    } else {
+        var timeRemainingDisplay = `${minutesRemaining} Minutes`
+    }
+
 
     return (
         <>
@@ -64,12 +80,39 @@ const TaskBox = ({task, debt}) => {
             </Box>
             
             {!debt && (
-                <>
-                <Typography
-                sx={textSX}>
-                    Amount Remaining: 
-                </Typography>
-                </>
+                <Box
+                sx={{
+                    display: "flex",
+                    alignItems: "center"
+                }}>
+                    <Typography
+                    sx={textSX}>
+                        Amount Remaining: 
+                    </Typography>
+                    <Typography
+                    sx={textSX}>
+                        {timeRemainingDisplay}
+                    </Typography>
+                    <Box 
+                    sx={{
+                        bgcolor: "secondary.main",
+                        opacity: 0.5,
+                        width: "50%",
+                        height: 10,
+                        borderRadius: 10
+                    }}>
+                        <Box
+                        sx={{
+                            width: `${task.minutesDone / task.durationMinutes}%`,
+                            bgcolor: "secondary.light",
+                            height: 10,
+                            borderRadius: 10
+                        }}
+                        >
+                        </Box>
+                    </Box>
+
+                </Box>
             )}
 
         </Paper>
