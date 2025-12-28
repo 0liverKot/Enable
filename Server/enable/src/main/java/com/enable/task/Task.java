@@ -23,6 +23,7 @@ public class Task {
     public String taskName;
     public String taskDescription;
     public Integer durationMinutes;
+    public Integer minutesDone;
     public String frequency;
     public LocalDate dateAdded;
     public LocalDate nextAppearance; 
@@ -83,6 +84,18 @@ public class Task {
 
     public void setDurationMinutes(Integer durationMinutes) {
         this.durationMinutes = durationMinutes;
+    }
+
+    public Integer getMinutesDone() {
+        return this.minutesDone;
+    }
+
+    public void initialiseMinutesDone() {
+        this.minutesDone = 0;
+    }
+
+    public void setMinutesDone(Integer minutesDone) {
+        this.minutesDone = minutesDone;
     }
 
     public String getFrequency() {
