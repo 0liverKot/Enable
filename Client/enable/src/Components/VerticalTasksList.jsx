@@ -4,7 +4,7 @@ import { sortTasksByNextAppearance } from "../utils/sortTasksByNextAppearance";
 import TaskBox from "./TaskBox";
 import { Box, Typography } from "@mui/material";
 
-const VerticalTasksList = () => {
+const VerticalTasksList = ({type}) => {
 
     const [tasks, setTasks] = useState([])
 
@@ -21,6 +21,16 @@ const VerticalTasksList = () => {
         sortTasksByNextAppearance(tasks)
     }, [tasks]);
 
+
+    var headingText;
+    var debt;
+    if(type === "debt") {
+        headingText = "Task Debt : "
+        debt = true
+    } else {
+        headingText = "Tasks Due : "
+        debt = false
+    }
 
     return (
         <>
@@ -39,7 +49,7 @@ const VerticalTasksList = () => {
                 sx={{
                     padding: 2
                 }}>
-                    Tasks Due : 
+                    {headingText}
                 </Typography>
                 <Box 
                 sx={{
@@ -50,7 +60,7 @@ const VerticalTasksList = () => {
                     }, 
                 }}>
                 {tasks.map((task, index) => (
-                    <TaskBox key={index} task={task} debt={false}/>
+                    <TaskBox key={index} task={task} debt={debt}/>
                 ))}
 
                 </Box>

@@ -13,9 +13,9 @@ const TaskBox = ({task, debt}) => {
 
     if(daysLeft == 0) {
 
-        timeDisplay = "Due in: " + hoursLeft + " Hours"
+        timeDisplay = "Due in : " + hoursLeft + " Hours"
     } else {
-        timeDisplay = "Due in: " + daysLeft + " Days " + hoursLeft + " Hours"
+        timeDisplay = "Due in : " + daysLeft + " Days " + hoursLeft + " Hours"
     }
 
 
@@ -27,9 +27,29 @@ const TaskBox = ({task, debt}) => {
     if (minutesRemaining > 60) {
         const hoursRemaining = Math.floor(minutesRemaining / 60)
         const minutesRemainder = minutesRemaining % 60
-        var timeRemainingDisplay = `${hoursRemaining} Hours ${minutesRemainder} Minutes: `
+        var timeRemainingDisplay = `${hoursRemaining} Hours ${minutesRemainder} Minutes`
     } else {
         var timeRemainingDisplay = `${minutesRemaining} Minutes`
+    }
+
+    var debtMessage;
+    var debtMessageColor;
+    if(debt) {
+        if(task.debtMinutes === 0) {
+            debtMessage = "No Debt For This Task"
+            debtMessageColor = "success"
+        } else {
+            debtMessageColor = "warning"
+            if(task.debtMinutes > 60) {
+                const debtHours = Math.floor(task.debtMinutes / 60)
+                const debtminutesRemainder =  task.debtMinutes % 60
+                var debtMessage = `Task Debt : ${debtHours} Hours ${debtminutesRemainder} Minutes`
+            }
+            else {
+                var debtMessage = `Task Debt : ${task.debtMinutes} Minutes`
+            } 
+
+        }
     }
 
 
@@ -66,7 +86,7 @@ const TaskBox = ({task, debt}) => {
             <Typography
             variant="h7"
             sx={textSX}>
-                Task Description: 
+                Task Description : 
             </Typography>
             <Box
             sx={{
@@ -112,6 +132,22 @@ const TaskBox = ({task, debt}) => {
                         >
                         </Box>
                     </Box>
+
+                </Box>
+            )}
+
+            {debt && (
+                <Box
+                sx={{
+                    display: "flex",
+                    alignItems: "center"
+                }}>
+                <Typography
+                variant="b2"
+                color={debtMessageColor}
+                sx={textSX}>
+                    {debtMessage}
+                </Typography>
 
                 </Box>
             )}

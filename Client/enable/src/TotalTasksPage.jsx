@@ -35,7 +35,7 @@ const TotalTasksPage = () => {
                 </Grid>
 
                 <Grid size={5} sx={{height: "90%"}}>
-                    <VerticalTasksList/>
+                    <VerticalTasksList type="debt"/>
                 </Grid>
             
             </Grid>

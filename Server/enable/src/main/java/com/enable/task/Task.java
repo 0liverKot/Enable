@@ -24,6 +24,7 @@ public class Task {
     public String taskDescription;
     public Integer durationMinutes;
     public Integer minutesDone;
+    public Integer debtMinutes;
     public String frequency;
     public LocalDate dateAdded;
     public LocalDate nextAppearance; 
@@ -96,6 +97,18 @@ public class Task {
 
     public void setMinutesDone(Integer minutesDone) {
         this.minutesDone = minutesDone;
+    }
+
+    public Integer getDebtMinutes() {
+        return this.debtMinutes;
+    }
+
+    public void setDebtMinutes(Integer debtMinutes) {
+        this.debtMinutes = debtMinutes;
+    }
+
+    public void initialiseDebtMinutes() {
+        this.debtMinutes = 0;
     }
 
     public String getFrequency() {
