@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getTasksByUser } from "../api/taskMethods";
 import { sortTasksByNextAppearance } from "../utils/sortTasksByNextAppearance";
 import TaskBox from "./TaskBox";
-import { Box, Typography } from "@mui/material";
+import { Box, Paper, Typography } from "@mui/material";
 
 const VerticalTasksList = ({type}) => {
 
@@ -43,6 +43,7 @@ const VerticalTasksList = ({type}) => {
                 borderRadius: 10,
                 height: "100%",
                 padding: 2,
+                justifyContent: "center"
             }}> 
                 <Typography
                 variant="h5"
@@ -54,9 +55,10 @@ const VerticalTasksList = ({type}) => {
                 <Box 
                 sx={{
                     height: "92%",
+                    padding: 2,
                     overflowY: "scroll",
                     '&::-webkit-scrollbar': {
-                        position: "relative" // makes it dissapear 
+                        scrollbarWidth: "none"
                     }, 
                 }}>
                 {tasks.map((task, index) => (

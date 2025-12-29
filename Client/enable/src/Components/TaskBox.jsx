@@ -1,8 +1,11 @@
 import { Box, duration, Paper, Typography } from "@mui/material";
 import React from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const TaskBox = ({task, debt}) => {
 
+    const navigate = useNavigate();
+    
     const textSX = {
         margin: 2
     }
@@ -53,22 +56,34 @@ const TaskBox = ({task, debt}) => {
     }
 
 
+    const handleClick = async () => {
+        navigate(`/task/?id=${task.id}`)
+    }
+
+
     return (
         <>
-        <Paper 
+        <Paper
+        component="button"
         elevation={10}
+        onClick={handleClick}
         sx={{
             border: "1px solid gray",
+            width: "100%",
+            textAlign: "left",
             borderRadius: 5,
-            padding: 2,
             bgcolor: "primary.secondary",
-            mb: 2
+            mb: 2,
+            "&:hover" : {
+                opacity: "1.0",
+                scale: 1.04
+            }
         }}> 
             <Box 
             sx={{
                 display: "flex",
                 alignItems: "center",
-                justifyContent: "space-between"
+                justifyContent: "space-between",
             }}>
                 <Typography 
                 variant="h5"
@@ -108,7 +123,7 @@ const TaskBox = ({task, debt}) => {
                 }}>
                     <Typography
                     sx={textSX}>
-                        Amount Remaining: 
+                        Amount Remaining:
                     </Typography>
                     <Typography
                     sx={textSX}>

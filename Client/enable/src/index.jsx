@@ -6,6 +6,7 @@ import CalendarPage from './CalendarPage.jsx'
 import ErrorPage from "./ErrorPage.jsx"
 import SignUp from './Signup.jsx';
 import TotalTasksPage from './TotalTasksPage.jsx';
+import Task from './Task.jsx';
 import { CssBaseline, ThemeProvider, useTheme } from '@mui/material';
 import theme from './theme.js';
 
@@ -35,7 +36,13 @@ const router = createBrowserRouter([
         path: "/alltasks",
         element: <TotalTasksPage/>,
         errorElement: <ErrorPage/>
+    },
+    {
+        path: "/task/*",
+        element: <Task/>,
+        errorElement: <ErrorPage/>
     }
+
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
