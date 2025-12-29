@@ -1,8 +1,18 @@
 import React from 'react';
-import { Box, Grid, Paper, useTheme, ThemeProvider } from '@mui/material';
+import { Typography, Grid, Paper, useTheme, ThemeProvider, Box } from '@mui/material';
+import { BarChart } from '@mui/x-charts/BarChart';
 
-const Bars = ({due, debt}) => {
+const Bars = ({due, debt, total}) => {
 
+    const yMax = Math.ceil(Math.max(due, debt) / 100) * 100
+
+    var title;
+    console.log(total)
+    if(total) {
+        title = "Total Tasks"
+    } else {
+        title = "Place Holder Task"
+    }
 
     return (
     <Paper
@@ -10,35 +20,41 @@ const Bars = ({due, debt}) => {
     sx={{
         borderRadius: 5,
         height: "100%",
-        background: "none",
-    }}>
-        <Grid container spacing={0}
-        sx={{
-            borderRadius: 5,
-            justifyContent: "center",
-            bgcolor: "primary.secondary",
-            alignItems: "flex-end",
-            height: "100%",
-            opacity: "0.8",
-            "&:hover" : {
+        bgcolor: "primary.secondary",
+        padding: 2,          
+        "&:hover" : {
                 opacity: "1.0",
                 scale: 1.05
             }
-        }}    
-        >
-            <Grid size={4} 
-            sx={{
-                bgcolor: '#60c914',
-                height: `${due}%`,
-                border: '2px solid black',
-            }}/>
-            <Grid size={4}
-             sx={{
-                bgcolor: '#cf1111',
-                height: `${debt}%`,
-                border: '2px solid black',
-            }}/>
-        </Grid>    
+    }}>
+        <Typography sx={{height: "5%"}}>
+            {title}
+        </Typography>
+        <BarChart
+        xAxis={[{ 
+            data: ['Due', 'Debt'], 
+            scaleType: 'band',
+            colorMap: {
+                type: 'piecewise',
+                thresholds: ['Due'],
+                colors: ["red", "green"]
+            } 
+        }]}
+        series={[{
+            data: [due, debt],
+            colorByPoint: true,
+        }]}
+        yAxis={[{
+            min: 0,
+            max: yMax
+        }]}
+        sx={{
+            position: "relative",
+            right: 15,
+            top: 20,
+            height: "95%"
+        }}
+        />
     </Paper>
     )
 }

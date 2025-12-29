@@ -6,7 +6,7 @@ import { Box } from "@mui/material";
 const TotalBars = ({totalDue, totalDebt}) => {
 
     return (
-        <Bars due={70} debt={50}/>
+        <Bars due={70} debt={50} total={true}/>
     )
 }
 
