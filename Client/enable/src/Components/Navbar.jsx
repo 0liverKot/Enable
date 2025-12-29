@@ -43,47 +43,47 @@ const Navbar = ({currentPage}) => {
             <>    
                 {currentPage == "dashboard" && (
                 <>
-                    <Button sx={NavbarButtonStyle} href='calendar'>Calendar</Button>
-                    <Button sx={NavbarButtonStyle} href='alltasks'>Tasks</Button>
-                    <Button sx={NavbarButtonStyle} href='dashboard'>Dashboard</Button>
-                    <Button sx={NavbarButtonStyle} href='notes'>Notes</Button>
-                    <Button sx={NavbarButtonStyle} href='focus'>Focus</Button>
+                    <Button sx={NavbarButtonStyle} href='/calendar'>Calendar</Button>
+                    <Button sx={NavbarButtonStyle} href='/alltasks'>Tasks</Button>
+                    <Button sx={NavbarButtonStyle} href='/dashboard'>Dashboard</Button>
+                    <Button sx={NavbarButtonStyle} href='/notes'>Notes</Button>
+                    <Button sx={NavbarButtonStyle} href='/focus'>Focus</Button>
                 </>
                 )}
                 {currentPage == "tasks" && (
                 <>
-                    <Button sx={NavbarButtonStyle} href='focus'>Focus</Button>
-                    <Button sx={NavbarButtonStyle} href='calendar'>Calendar</Button>
-                    <Button sx={NavbarButtonStyle} href='alltasks'>Tasks</Button>
-                    <Button sx={NavbarButtonStyle} href='dashboard'>Dashboard</Button>
-                    <Button sx={NavbarButtonStyle} href='notes'>Notes</Button>
+                    <Button sx={NavbarButtonStyle} href='/focus'>Focus</Button>
+                    <Button sx={NavbarButtonStyle} href='/calendar'>Calendar</Button>
+                    <Button sx={NavbarButtonStyle} href='/alltasks'>Tasks</Button>
+                    <Button sx={NavbarButtonStyle} href='/dashboard'>Dashboard</Button>
+                    <Button sx={NavbarButtonStyle} href='/notes'>Notes</Button>
                 </>
                 )}
                 {currentPage == "notes" && (
                 <>
-                    <Button sx={NavbarButtonStyle} href='alltasks'>Tasks</Button>
-                    <Button sx={NavbarButtonStyle} href='dashboard'>Dashboard</Button>
-                    <Button sx={NavbarButtonStyle} href='notes'>Notes</Button>
-                    <Button sx={NavbarButtonStyle} href='focus'>Focus</Button>
-                    <Button sx={NavbarButtonStyle} href='calendar'>Calendar</Button>
+                    <Button sx={NavbarButtonStyle} href='/alltasks'>Tasks</Button>
+                    <Button sx={NavbarButtonStyle} href='/dashboard'>Dashboard</Button>
+                    <Button sx={NavbarButtonStyle} href='/notes'>Notes</Button>
+                    <Button sx={NavbarButtonStyle} href='/focus'>Focus</Button>
+                    <Button sx={NavbarButtonStyle} href='/calendar'>Calendar</Button>
                 </>
                 )}
                 {currentPage == "calendar" && (
                 <>
-                    <Button sx={NavbarButtonStyle} href='notes'>Notes</Button>
-                    <Button sx={NavbarButtonStyle} href='focus'>Focus</Button>
-                    <Button sx={NavbarButtonStyle} href='calendar'>Calendar</Button>
-                    <Button sx={NavbarButtonStyle} href='alltasks'>Tasks</Button>
-                    <Button sx={NavbarButtonStyle} href='dashboard'>Dashboard</Button>
+                    <Button sx={NavbarButtonStyle} href='/notes'>Notes</Button>
+                    <Button sx={NavbarButtonStyle} href='/focus'>Focus</Button>
+                    <Button sx={NavbarButtonStyle} href='/calendar'>Calendar</Button>
+                    <Button sx={NavbarButtonStyle} href='/alltasks'>Tasks</Button>
+                    <Button sx={NavbarButtonStyle} href='/dashboard'>Dashboard</Button>
                 </>
                 )}
                 {currentPage == "focus" && (
                 <>
-                    <Button sx={NavbarButtonStyle} href='dashboard'>Dashboard</Button>
-                    <Button sx={NavbarButtonStyle} href='notes'>Notes</Button>
-                    <Button sx={NavbarButtonStyle} href='focus'>Focus</Button>
-                    <Button sx={NavbarButtonStyle} href='calendar'>Calendar</Button>
-                    <Button sx={NavbarButtonStyle} href='alltasks'>Tasks</Button>
+                    <Button sx={NavbarButtonStyle} href='/dashboard'>Dashboard</Button>
+                    <Button sx={NavbarButtonStyle} href='/notes'>Notes</Button>
+                    <Button sx={NavbarButtonStyle} href='/focus'>Focus</Button>
+                    <Button sx={NavbarButtonStyle} href='/calendar'>Calendar</Button>
+                    <Button sx={NavbarButtonStyle} href='/alltasks'>Tasks</Button>
                 </>
                 )}
             </>

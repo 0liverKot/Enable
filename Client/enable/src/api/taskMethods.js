@@ -6,4 +6,8 @@ export const getTasksByUser = (uid) => {
     return taskService.getTasksByUser(uid)
 }
 
+export const getTask = (id) => {
+    return taskService.getTaskById(id)
+}
+
 

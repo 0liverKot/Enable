@@ -7,7 +7,6 @@ const Bars = ({due, debt, total}) => {
     const yMax = Math.ceil(Math.max(due, debt) / 100) * 100
 
     var title;
-    console.log(total)
     if(total) {
         title = "Total Tasks"
     } else {

@@ -15,7 +15,7 @@ const TotalTasksPage = () => {
     return (
         <>
         <Navbar currentPage={"tasks"}/>
-        <Container maxWidth={"xxl"}>
+        <Container maxWidth={"xl"}>
             <Grid 
             container
             spacing={10}
