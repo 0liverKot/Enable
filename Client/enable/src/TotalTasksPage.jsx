@@ -14,7 +14,7 @@ const TotalTasksPage = () => {
     
     return (
         <>
-        <Navbar currentPage={"other"}/>
+        <Navbar currentPage={"tasks"}/>
         <Container maxWidth={"xxl"}>
             <Grid 
             container
