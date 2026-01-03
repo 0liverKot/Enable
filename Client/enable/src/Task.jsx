@@ -13,7 +13,8 @@ const Task = () => {
 
     const [task, setTask] = useState([])
     const [taskSet, setTaskSet] = useState(false)
-    
+    const [edit, setEdit] = useState(false)
+
     useEffect(() => {
         async function fetchTask(id) {
             const response = await getTask(id)
@@ -29,7 +30,6 @@ const Task = () => {
     var timeDisplay;
 
     if(daysLeft == 0) {
-
         timeDisplay = "Due in : " + hoursLeft + " Hours"
     } else {
         timeDisplay = "Due in : " + daysLeft + " Days " + hoursLeft + " Hours"
@@ -58,6 +58,10 @@ const Task = () => {
             break 
     }
 
+    const handleEditClick = () => {
+        setEdit(true)
+    }
+
     return (
         <>
         <Navbar currentPage={"tasks"}/>
@@ -75,80 +79,95 @@ const Task = () => {
                     <Grid size={2} sx={{height: "90%"}}>
                         <Bars due={task.durationMinutes - task.minutesDone} debt={task.debtMinutes}/>
                     </Grid>
-
+                    
                     <Grid size={6} sx={{height: "90%"}}> 
                         <Box 
                         sx={{
                             height: "100%",
                             width: "100%",
-                            bgcolor: "primary.main",
+                            bgcolor: "primary.secondary",
                             border: "1px solid grey",
                             opacity: 0.8,
                             borderRadius: 10,
                             padding: 2
                         }}>
-                        <Typography variant="h5" sx={textSX}>
-                            {task.taskName}
-                        </Typography>
-                        <Typography
-                        variant="h7"
-                        sx={textSX}>
-                            Task Description : 
-                        </Typography>
-                        <Box
-                        sx={{
-                            border: "1px solid gray",
-                            borderRadius: 2,
-                            m: 2,
-                            height: "50%"
-                        }}>
-                            <Typography
-                            sx={textSX}>
-                                {task.taskDescription}
-                            </Typography>
-                        </Box>
                         
-                        <Box
-                        sx={{
-                            display: "flex",
-                            border: "1px solid gray",
-                            borderRadius: 2,
-                            m: 2,
-                            padding: 2
-                        }}>
-                            <Typography variant="h7" 
-                            sx={{
-                                width: "50%",
-                                m: 2
-                            }}>
-                                {timeDisplay}
+                        {!edit && (
+                            <>
+                            <Typography variant="h5" sx={textSX}>
+                                {task.taskName}
                             </Typography>
-
-                            <Typography variant="h7" 
+                            <Typography
+                            variant="h7"
+                            sx={textSX}>
+                                Task Description : 
+                            </Typography>
+                            <Box
                             sx={{
-                                width: "50%",
-                                m: 2
+                                border: "1px solid gray",
+                                borderRadius: 2,
+                                m: 2,
+                                height: "50%"
                             }}>
-                                {frequencyDispay}
-                            </Typography>                         
-                        </Box>
+                                <Typography
+                                sx={textSX}>
+                                    {task.taskDescription}
+                                </Typography>
+                            </Box>
+                            
+                            <Box
+                            sx={{
+                                display: "flex",
+                                border: "1px solid gray",
+                                borderRadius: 2,
+                                m: 2,
+                                padding: 2
+                            }}>
+                                <Typography variant="h7" 
+                                sx={{
+                                    width: "50%",
+                                    m: 2
+                                }}>
+                                    {timeDisplay}
+                                </Typography>
 
-                        <Button variant="contained" startIcon={<EditIcon/>}
-                        sx={{
-                            m: 2
-                        }}>
-                            Edit
-                        </Button>
+                                <Typography variant="h7" 
+                                sx={{
+                                    width: "50%",
+                                    m: 2
+                                }}>
+                                    {frequencyDispay}
+                                </Typography>                         
+                            </Box>
 
+                            <Button variant="contained" startIcon={<EditIcon/>}
+                            onClick={handleEditClick}
+                            sx={{
+                                m: 2,
+                                bgcolor: "primary.secondary", 
+                                "&:hover": {
+                                    scale: 1.1
+                                }
+                            }}>
+                                Edit
+                            </Button>
+                            </>
+                        )}
+
+                        {edit && (
+                            <>
+                                
+                            </>
+                        )}
                         </Box>
-                    </Grid>
+                        </Grid>
 
                     <Grid size={4} sx={{height: "90%"}}>
                         <Box 
                         sx={{
                             height: "100%",
                             width: "100%",
-                            bgcolor: "primary.main",
+                            bgcolor: "primary.secondary",
                             border: "1px solid grey",
                             opacity: 0.8,
                             borderRadius: 10,
