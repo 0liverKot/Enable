@@ -19,7 +19,7 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer id;
-    public Integer uid; // id of user the task belongs to
+    public Integer uid;
     public String taskName;
     public String taskDescription;
     public Integer durationMinutes;
