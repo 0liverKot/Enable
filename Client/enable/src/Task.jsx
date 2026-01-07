@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router";
 import { getTask } from "./api/taskMethods";
 import Bars from "./Components/Bars";
 import Navbar from "./Components/Navbar";
-import { Container, Grid, Box, Typography, Button } from "@mui/material";
+import { Paper, Container, Grid, Box, Typography, Button } from "@mui/material";
 import EditIcon from '@mui/icons-material/Edit';
 
 const Task = () => {
@@ -62,6 +62,17 @@ const Task = () => {
         setEdit(true)
     }
 
+    const taskContainerSx = {
+        borderRadius: 5,
+        height: "100%",
+        bgcolor: "primary.secondary",
+        padding: 2,
+        "&:hover" : {
+            opacity: "1.0",
+            scale: 1.05
+        }
+    }
+
     return (
         <>
         <Navbar currentPage={"tasks"}/>
@@ -76,11 +87,7 @@ const Task = () => {
                     height: "80vh",
                     margin: 2
                 }}>
-                    <Grid size={2} sx={{height: "90%"}}>
-                        <Bars due={task.durationMinutes - task.minutesDone} debt={task.debtMinutes}/>
-                    </Grid>
-                    
-                    <Grid size={6} sx={{height: "90%"}}> 
+                    <Grid size={8} sx={{height: "90%"}}> 
                         <Box 
                         sx={{
                             height: "100%",
@@ -92,8 +99,21 @@ const Task = () => {
                             padding: 2
                         }}>
                         
+                        <Box 
+                        sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                            height: "100%",
+                            padding: 5
+                        }}>
+                        <Box sx={{width: "25%", height: "100%"}}>
+                            <Bars due={task.durationMinutes - task.minutesDone} debt={task.debtMinutes}/>
+                        </Box>
+                        
                         {!edit && (
-                            <>
+                            <Paper elevation={10} sx={taskContainerSx}>
+
                             <Typography variant="h5" sx={textSX}>
                                 {task.taskName}
                             </Typography>
@@ -143,7 +163,7 @@ const Task = () => {
                             <Button variant="contained" startIcon={<EditIcon/>}
                             onClick={handleEditClick}
                             sx={{
-                                m: 2,
+                                ml: 2,
                                 bgcolor: "primary.secondary", 
                                 "&:hover": {
                                     scale: 1.1
@@ -151,14 +171,14 @@ const Task = () => {
                             }}>
                                 Edit
                             </Button>
-                            </>
+                            </Paper>
                         )}
 
                         {edit && (
-                            <>
-                                
-                            </>
+                            <Paper sx={taskContainerSx}>
+                            </Paper>
                         )}
+                        </Box>
                         </Box>
                         </Grid>
 
