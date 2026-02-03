@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router";
 import { getTask } from "./api/taskMethods";
 import Bars from "./Components/Bars";
 import Navbar from "./Components/Navbar";
-import { Paper, Container, Grid, Box, Typography, Button } from "@mui/material";
+import { TextField, Paper, Container, Grid, Box, Typography, Button } from "@mui/material";
 import EditIcon from '@mui/icons-material/Edit';
 
 const Task = () => {
@@ -65,6 +65,7 @@ const Task = () => {
     const taskContainerSx = {
         borderRadius: 5,
         height: "100%",
+        width: "70%",
         bgcolor: "primary.secondary",
         padding: 2,
         "&:hover" : {
@@ -92,15 +93,28 @@ const Task = () => {
                         sx={{
                             height: "100%",
                             width: "100%",
-                            bgcolor: "primary.secondary",
                             border: "1px solid grey",
-                            opacity: 0.8,
                             borderRadius: 10,
-                            padding: 2
                         }}>
                         
+                        {
+                        // Applies background with opacity
+                        // Child of container to prevent other children inheriting the opacity
+                        }
                         <Box 
                         sx={{
+                            position: "absolute",
+                            width: "49.1%",
+                            height: "71.7%",
+                            bgcolor: "primary.secondary",
+                            opacity: 0.8,
+                            borderRadius: 10
+                        }}>
+                        </Box>
+
+                        <Box 
+                        sx={{
+                            position: "relative",
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "space-between",
@@ -113,10 +127,9 @@ const Task = () => {
                         
                         {!edit && (
                             <Paper elevation={10} sx={taskContainerSx}>
+                            
+                            <Typography variant="h5" sx={textSX}> {`Task Name : ${task.taskName}`} </Typography>
 
-                            <Typography variant="h5" sx={textSX}>
-                                {task.taskName}
-                            </Typography>
                             <Typography
                             variant="h7"
                             sx={textSX}>
@@ -175,7 +188,25 @@ const Task = () => {
                         )}
 
                         {edit && (
-                            <Paper sx={taskContainerSx}>
+                            <Paper elevation={10} sx={taskContainerSx}>
+
+                                <Typography variant="h5" sx={textSX}> Edit Task : </Typography>
+
+                                <Box 
+                                sx={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    mb: 5
+                                }}>
+                                    <Typography variant="h7" sx={textSX}> Task Name : </Typography>
+                                    <TextField size="small" sx={{width: "75%"}} label={task.taskName} variant="standard"/>
+                                </Box>
+
+                                <Typography variant="h7" sx={textSX}> Task Description : </Typography>
+                                <TextField multiline sx={{ml: 2, width: "90%"}} 
+                                label={task.taskDescription} variant="standard"
+                                minRows={2} maxRows={2}/>
+                            
                             </Paper>
                         )}
                         </Box>

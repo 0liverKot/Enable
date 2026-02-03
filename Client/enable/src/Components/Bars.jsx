@@ -4,6 +4,7 @@ import { BarChart } from '@mui/x-charts/BarChart';
 
 const Bars = ({due, debt, total}) => {
 
+    const theme = useTheme()
     const yMax = Math.ceil(Math.max(due, debt) / 100) * 100
 
     var title;
@@ -12,7 +13,6 @@ const Bars = ({due, debt, total}) => {
     } else {
         title = "Place Holder Task"
     }
-
     return (
     <Paper
     elevation={10}
@@ -36,7 +36,7 @@ const Bars = ({due, debt, total}) => {
             colorMap: {
                 type: 'piecewise',
                 thresholds: ['Due'],
-                colors: ["red", "green"]
+                colors: [theme.palette.error.main, theme.palette.success.main]
             } 
         }]}
         series={[{

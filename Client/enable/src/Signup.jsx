@@ -142,7 +142,7 @@ const SignUp = () => {
             <Paper elevation={10}
             sx={{
                 padding: 1,
-                bgcolor: 'primary.main',
+                bgcolor: 'primary.secondary',
                 marginTop: '10%',
                 borderRadius: 5,
             }}>
@@ -185,7 +185,8 @@ const SignUp = () => {
                     helperText={firstNameError.message}
                     sx={{
                         width: "75%",
-                        margin: 2
+                        margin: 2,
+                        bgcolor: "primary.light"
                     }}
                     onChange={(event) => {setFirstName(event.target.value)}}/>
                     <TextField variant="outlined" label ='Last Name' 
@@ -193,7 +194,8 @@ const SignUp = () => {
                     helperText={lastNameError.message}
                     sx={{
                         width: "75%",
-                        margin: 2
+                        margin: 2,
+                        bgcolor: "primary.light"
                     }}
                     onChange={(event) => {setLastName(event.target.value)}}/>
                     </>
@@ -204,7 +206,8 @@ const SignUp = () => {
                     helperText={emailError.message}
                     sx={{
                         width: "75%",
-                        margin: 2
+                        margin: 2,
+                        bgcolor: "primary.light"
                     }}
                     onChange={(event) => {setEmail(event.target.value)}}/>
                     <TextField variant="outlined" label='Password'
@@ -212,17 +215,18 @@ const SignUp = () => {
                     helperText={passwordError.message} 
                     sx={{
                         width: "75%",
-                        margin: 2
+                        margin: 2,
+                        bgcolor: 'primary.light',
+                        color: 'text.primary'
                     }}
                     onChange={(event) => {setPassword(event.target.value)}}/>
                     <Button variant="Contained" 
                     sx={{
                         width: "75%",
                         padding: 2,
-                        bgcolor: "secondary.light",
+                        bgcolor: "secondary.dark",
                         '&:hover' : {
-                            bgcolor: 'secondary.dark',
-                            color: 'white'
+                            bgcolor: 'secondary.light',
                         }
                     }}
                     onClick={handleSignin}>
@@ -238,7 +242,7 @@ const SignUp = () => {
                         marginTop: 1,
                         bgcolor: 'none',
                         '&:hover' : {
-                            color: 'grey',
+                            color: 'secondary.dark',
                             textDecoration: 'underline'
                         }
                     }}
@@ -257,7 +261,7 @@ const SignUp = () => {
                         marginTop: 1,
                         bgcolor: 'none',
                         '&:hover' : {
-                            color: 'grey',
+                            color: 'secondary.dark',
                             textDecoration: 'underline'
                         }
                     }}

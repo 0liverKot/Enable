@@ -37,9 +37,8 @@ const VerticalTasksList = ({type}) => {
         {tasks.length !== 0 && (
             <Box
             sx={{
-                bgcolor: "primary.main",
+                bgcolor: "primary.secondary",
                 opacity: 0.8,
-                border: "1px solid gray",
                 borderRadius: 10,
                 height: "100%",
                 padding: 2,

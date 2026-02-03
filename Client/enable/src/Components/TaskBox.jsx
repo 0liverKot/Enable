@@ -68,11 +68,10 @@ const TaskBox = ({task, debt}) => {
         elevation={10}
         onClick={handleClick}
         sx={{
-            border: "1px solid gray",
             width: "100%",
             textAlign: "left",
             borderRadius: 5,
-            bgcolor: "primary.secondary",
+            bgcolor: "primary.light",
             mb: 2,
             "&:hover" : {
                 opacity: "1.0",

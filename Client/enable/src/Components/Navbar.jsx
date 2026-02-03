@@ -10,7 +10,7 @@ const Navbar = ({currentPage}) => {
     const isMobile = useMediaQuery(theme.breakpoints.down('md'))
 
     const NavbarButtonStyle = {
-        bgcolor: 'secondary.main',
+        bgcolor: 'primary.light',
         opacity: "50%",
         width: 1,
         '&:hover': {
