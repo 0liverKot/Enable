@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useSearchParams } from "react-router";
+import { Form, useSearchParams } from "react-router";
 import { getTask } from "./api/taskMethods";
 import Bars from "./Components/Bars";
 import Navbar from "./Components/Navbar";
-import { TextField, Paper, Container, Grid, Box, Typography, Button, colors } from "@mui/material";
+import { TextField, Paper, Container, Grid, Box, Typography, Button, Select, MenuItem, InputLabel, FormControl} from "@mui/material";
 import EditIcon from '@mui/icons-material/Edit';
 
 const Task = () => {
@@ -14,6 +14,9 @@ const Task = () => {
     const [task, setTask] = useState([])
     const [taskSet, setTaskSet] = useState(false)
     const [edit, setEdit] = useState(false)
+    const [hours, setHours] = useState(0)
+    const [minutes, setMinutes] = useState(0)
+    const [frequency, setFrequency] = useState(0)
 
     useEffect(() => {
         async function fetchTask(id) {
@@ -68,6 +71,18 @@ const Task = () => {
 
     const handleEditClick = () => {
         setEdit(true)
+    }
+
+    const handleHourChange = (event) => {
+        setHours(event.target.value)
+    }
+
+    const handleMinuteChange = (event) => {
+        setMinutes(event.target.value)
+    } 
+
+    const handleFrequencyChange = (event) => {
+        setFrequency(event.target.value)
     }
 
     const taskContainerSx = {
@@ -216,16 +231,72 @@ const Task = () => {
                                 sx={{
                                     display: "flex",
                                     flexDirection: "row",
-                                }}>
-                                    <TextField size="small" 
-                                    label='Duration' 
-                                    variant="standard"
-                                    sx={textFieldSX}/>
+                                    m: 2
+                                }}> 
+                                    <FormControl fullWidth>
+                                    <InputLabel sx={{color: "text.primary"}} id="hours-select-label">Hours</InputLabel>
+                                    <Select
+                                    labelId="hours-select-label"
+                                    label="Hours"
+                                    onChange={handleHourChange}>
+                                        <MenuItem value={0}>0</MenuItem>
+                                        <MenuItem value={1}>1</MenuItem>
+                                        <MenuItem value={2}>2</MenuItem>
+                                        <MenuItem value={3}>3</MenuItem>
+                                        <MenuItem value={4}>4</MenuItem>
+                                        <MenuItem value={5}>5</MenuItem>
+                                        <MenuItem value={6}>6</MenuItem>
+                                    </Select>
+                                    </FormControl>
                                     
-                                    <TextField size="small" 
-                                    label='Frequency' 
+                                    <FormControl fullWidth>
+                                    <InputLabel sx={{color: "text.primary"}} id="minutes-select-label">Minutes</InputLabel>
+                                        <Select
+                                        labelId="minutes-select-id"
+                                        label="Minutes"
+                                        onChange={handleMinuteChange}>
+                                            <MenuItem value={0}>0</MenuItem>
+                                            <MenuItem value={5}>5</MenuItem>
+                                            <MenuItem value={10}>10</MenuItem>
+                                            <MenuItem value={15}>25</MenuItem>
+                                            <MenuItem value={20}>20</MenuItem>
+                                            <MenuItem value={25}>25</MenuItem>
+                                            <MenuItem value={30}>30</MenuItem>
+                                            <MenuItem value={35}>35</MenuItem>
+                                            <MenuItem value={40}>40</MenuItem>
+                                            <MenuItem value={45}>45</MenuItem>
+                                            <MenuItem value={50}>50</MenuItem>
+                                            <MenuItem value={55}>55</MenuItem>
+                                        </Select>
+                                    </FormControl>
+                                </Box>                                    
+                                    
+                                <Box
+                                sx={{
+                                    display: "flex",
+                                    flexDirection: "row",
+                                    m: 2
+                                }}>
+                                    <FormControl fullWidth>
+                                    <InputLabel sx={{color: "text.primary"}}
+                                    id='frequency-select-label'>Frequency</InputLabel>
+                                        <Select
+                                        labelId="frequency-select-label"
+                                        label='Frequency'
+                                        onChange={handleFrequencyChange}>
+                                            <MenuItem value={"DAILY"}>Daily</MenuItem>
+                                            <MenuItem value={"EVERY_OTHER_DAY"}>Every Other Day</MenuItem>
+                                            <MenuItem value={"WEEKLY"}>Weekly</MenuItem>
+                                            <MenuItem value={"BI_WEEKLY"}>Bi-Weekly</MenuItem>
+                                            <MenuItem value={"CUSTOM"}>Custom</MenuItem>
+                                        </Select>
+                                    </FormControl>
+                                
+                                    <TextField size="small"
+                                    label='Custom Frequency'
                                     variant="standard"
                                     sx={textFieldSX}/>
+
                                 </Box>
 
                                 <Button variant="contained" startIcon={<EditIcon/>}
