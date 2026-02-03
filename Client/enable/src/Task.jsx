@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router";
 import { getTask } from "./api/taskMethods";
 import Bars from "./Components/Bars";
 import Navbar from "./Components/Navbar";
-import { TextField, Paper, Container, Grid, Box, Typography, Button } from "@mui/material";
+import { TextField, Paper, Container, Grid, Box, Typography, Button, colors } from "@mui/material";
 import EditIcon from '@mui/icons-material/Edit';
 
 const Task = () => {
@@ -36,7 +36,15 @@ const Task = () => {
     }
 
     const textSX = {
-        margin: 2
+        margin: 2,
+    }
+
+    const textFieldSX = {
+        width: "90%",
+        m: 2,
+        "& .MuiInputLabel-root": {
+            color: "text.primary"            
+        }
     }
 
     var frequencyDispay = "Frequency : Every ";
@@ -176,6 +184,7 @@ const Task = () => {
                             <Button variant="contained" startIcon={<EditIcon/>}
                             onClick={handleEditClick}
                             sx={{
+                                color: "text.primary",
                                 ml: 2,
                                 bgcolor: "primary.secondary", 
                                 "&:hover": {
@@ -192,21 +201,46 @@ const Task = () => {
 
                                 <Typography variant="h5" sx={textSX}> Edit Task : </Typography>
 
-                                <Box 
+                                <TextField size="small" 
+                                label='Task Name' 
+                                variant="standard"
+                                sx={textFieldSX}/>
+
+                                <TextField multiline 
+                                label="Task Description" 
+                                variant="standard"
+                                maxRows={4}
+                                sx={textFieldSX}/>
+                                
+                                <Box
                                 sx={{
                                     display: "flex",
-                                    alignItems: "center",
-                                    mb: 5
+                                    flexDirection: "row",
                                 }}>
-                                    <Typography variant="h7" sx={textSX}> Task Name : </Typography>
-                                    <TextField size="small" sx={{width: "75%"}} label={task.taskName} variant="standard"/>
+                                    <TextField size="small" 
+                                    label='Duration' 
+                                    variant="standard"
+                                    sx={textFieldSX}/>
+                                    
+                                    <TextField size="small" 
+                                    label='Frequency' 
+                                    variant="standard"
+                                    sx={textFieldSX}/>
                                 </Box>
 
-                                <Typography variant="h7" sx={textSX}> Task Description : </Typography>
-                                <TextField multiline sx={{ml: 2, width: "90%"}} 
-                                label={task.taskDescription} variant="standard"
-                                minRows={2} maxRows={2}/>
-                            
+                                <Button variant="contained" startIcon={<EditIcon/>}
+                                onClick={handleEditClick}
+                                sx={{
+                                    color: "text.primary",
+                                    ml: 2,
+                                    bgcolor: "primary.secondary", 
+                                    "&:hover": {
+                                    scale: 1.1
+                                    }
+                                }}>
+                                Submit Changes
+                                </Button>
+
                             </Paper>
                         )}
                         </Box>

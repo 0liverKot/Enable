@@ -19,7 +19,7 @@ const theme = createTheme({
             main: 'hsl(0, 60%, 40%)' 
         },
         text: {
-            primary: 'hsl(0, 0%, 80%)'
+            primary: 'hsl(0, 0%, 75%)'
         },
         background: {
             default: 'hsl(0, 0%, 10%)',
