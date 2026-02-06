@@ -14,9 +14,15 @@ const Task = () => {
     const [task, setTask] = useState([])
     const [taskSet, setTaskSet] = useState(false)
     const [edit, setEdit] = useState(false)
+    // following variables used in updating tasks, not used in rendering the page
+    const [taskName, setTaskName] = useState()
+    const [taskDescription, setTaskDescription] = useState()
     const [hours, setHours] = useState(0)
     const [minutes, setMinutes] = useState(0)
     const [frequency, setFrequency] = useState(0)
+    const [customfrequency, setCustomFrequency] = useState()
+    const [hideCustomFrequency, setHideCustomFrequency] = useState(true)
+    const [customFrequencyError, setCustomFrequencyError] = useState({boolean: false, message: ""})
 
     useEffect(() => {
         async function fetchTask(id) {
@@ -73,6 +79,27 @@ const Task = () => {
         setEdit(true)
     }
 
+    const handleSubmit = () => {
+        if(!validFrequencyOption()) {
+            setCustomFrequencyError({boolean: true, message: "Invalid Custom frequency"})
+            return;
+        }
+        
+        setCustomFrequencyError({boolean: false, message: ""})
+
+    }
+
+    const validFrequencyOption = () => {
+        if(frequency !== "CUSTOM") {
+            return true
+        }
+        if(!customfrequency) {
+            return false
+        }
+
+        return /^\d+(?:\/\d+)*$/.test(customfrequency.trim())
+    }
+
     const handleHourChange = (event) => {
         setHours(event.target.value)
     }
@@ -82,6 +109,14 @@ const Task = () => {
     } 
 
     const handleFrequencyChange = (event) => {
+        
+        if(event.target.value === "CUSTOM") {
+            setHideCustomFrequency(false)
+        } else if (hideCustomFrequency === false) {
+            setHideCustomFrequency(true)
+            setCustomFrequencyError({boolean: false, message: ""})
+        }
+
         setFrequency(event.target.value)
     }
 
@@ -219,13 +254,15 @@ const Task = () => {
                                 <TextField size="small" 
                                 label='Task Name' 
                                 variant="standard"
-                                sx={textFieldSX}/>
+                                sx={textFieldSX}
+                                onChange={(event) => {setTaskName(event.target.value)}}/>
 
                                 <TextField multiline 
                                 label="Task Description" 
                                 variant="standard"
                                 maxRows={4}
-                                sx={textFieldSX}/>
+                                sx={textFieldSX}
+                                onChange={(event) => {setTaskDescription(event.target.value)}}/>
                                 
                                 <Box
                                 sx={{
@@ -293,17 +330,35 @@ const Task = () => {
                                     </FormControl>
                                 
                                     <TextField size="small"
+                                    disabled={hideCustomFrequency}
                                     label='Custom Frequency'
                                     variant="standard"
-                                    sx={textFieldSX}/>
+                                    sx={textFieldSX}
+                                    error={customFrequencyError.boolean}
+                                    onChange={(event => {setCustomFrequency(event.target.value)})}/>
 
                                 </Box>
 
+                                {!hideCustomFrequency && (
+                                    <Box
+                                    sx={{
+                                        display: "flex",
+                                        justifyContent: "center"
+                                    }}>
+                                    <Typography
+                                    sx={{width: "90%"}} variant="b2">
+                                        For a custom frequency option use the following format: {"<days>/<days>/... \n"} .
+                                        
+                                        {" 2/1"} will give the task in 2 days, then 1 day repeatedly.
+                                    </Typography>
+                                    </Box>
+                                )}
+
+                                <Box sx={{display: "flex", ml: 2, mt: 2, height: "5%", alignItems: "flex-start"}}>
                                 <Button variant="contained" startIcon={<EditIcon/>}
-                                onClick={handleEditClick}
+                                onClick={handleSubmit}
                                 sx={{
                                     color: "text.primary",
-                                    ml: 2,
                                     bgcolor: "primary.secondary", 
                                     "&:hover": {
                                     scale: 1.1
@@ -311,7 +366,12 @@ const Task = () => {
                                 }}>
                                 Submit Changes
                                 </Button>
-
+                                
+                                {customFrequencyError.boolean && (
+                                    <Typography sx={{ml: 2}} color="error.main">{customFrequencyError.message}</Typography>
+                                )}
+                                
+                                </Box>
                             </Paper>
                         )}
                         </Box>
